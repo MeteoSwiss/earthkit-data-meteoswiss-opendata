@@ -4,8 +4,11 @@ name = "earthkit-data-meteoswiss-opendata"
 description = "Earthkit-data plugin for accessing NWP MeteoSwiss Open Data."
 license = "BSD-3-Clause"
 readme = "README.rst"
-authors = [{ name = "Nina Burgdorfer", email = "nina.burgdorfer@meteoswiss.ch" }]
-requires-python = ">=3.11,<3.12"
+authors = [
+    "Christian Kanesan <christian.kanesan@meteoswiss.ch>",
+    "Nina Burgdorfer <nina.burgdorfer@meteoswiss.ch>",
+]
+requires-python = ">=3.11"
 dependencies = [
 ]
 
