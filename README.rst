@@ -45,7 +45,7 @@ Installing the package registers the ``meteoswiss-opendata`` source with
 Using the Library
 -----------------
 
-Load the latest complete deterministic ICON-CH2 forecast for total
+Load the latest deterministic ICON-CH2-EPS forecast +0h, +1h & +2h for total
 precipitation:
 
 .. code-block:: python
@@ -71,8 +71,7 @@ precipitation:
     print(dataset)
 
 For ``ref_time="latest"``, the plugin selects the newest forecast run that
-contains all requested lead times. Lead times from different forecast runs
-are not mixed.
+contains all requested lead times.
 
 An exact reference time can be provided as a timezone-aware
 ``datetime.datetime``:
