@@ -1,9 +1,16 @@
-"""Earthkit source for MeteoSwiss Open Data."""
+"""
+Earthkit source for MeteoSwiss Open Data.
+
+Copyright (c) 2026 MeteoSwiss, contributors listed in AUTHORS
+
+Distributed under the terms of the BSD 3-Clause License.
+
+SPDX-License-Identifier: BSD-3-Clause
+"""
 
 import datetime as dt
 
-from earthkit.data.core import get_source
-from earthkit.data.sources import Source
+from earthkit.data.sources import Source, get_source
 from pydantic import TypeAdapter
 
 from .api import get_asset_urls
