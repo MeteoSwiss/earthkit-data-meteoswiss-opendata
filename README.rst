@@ -70,9 +70,9 @@ precipitation:
     dataset = forecast.to_xarray(profile="grib")
     print(dataset)
 
+
 For ``ref_time="latest"``, the plugin selects the newest forecast run that
 contains all requested lead times.
-
 An exact reference time can be provided as a timezone-aware
 ``datetime.datetime``:
 
@@ -117,6 +117,24 @@ Parameters
     A ``datetime.timedelta``, an ISO 8601 duration string, or a list of
     either. Examples include ``datetime.timedelta(hours=1)``, ``"PT1H"``,
     and ``["PT0H", "PT1H", "PT2H"]``.
+
+Related Links
+-------------
+
+* `earthkit-data documentation <https://earthkit-data.readthedocs.io/en/latest/>`__
+* `Earthkit source plugin documentation <https://earthkit-data.readthedocs.io/en/latest/concepts/plugins/sources_plugin.html>`__
+* `MeteoSwiss Open Data documentation <https://opendatadocs.meteoswiss.ch/>`__
+* `MeteoSwiss numerical weather prediction data <https://opendatadocs.meteoswiss.ch/e-forecast-data>`__
+* `MeteoSwiss Open Data NWP example notebooks <https://github.com/MeteoSwiss/opendata-nwp-demos>`__
+
+Collection Browser
+''''''''''''''''''
+
+The available collection assets can be inspected in the STAC Browser:
+
+* `ICON-CH1-EPS collection <https://data.geo.admin.ch/browser/index.html#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1>`__
+* `ICON-CH2-EPS collection <https://data.geo.admin.ch/browser/index.html#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2>`__
+* `KENDA-CH1 collection <https://data.geo.admin.ch/browser/index.html#/collections/ch.meteoschweiz.ogd-analysis-kenda-ch1>`__
 
 Development Setup with Poetry
 -----------------------------
