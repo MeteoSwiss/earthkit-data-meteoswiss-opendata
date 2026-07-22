@@ -40,9 +40,8 @@ def test_multiple_lead_times_omit_horizon_filter() -> None:
 
     query = request.dump()
 
-    # STAC can only request one `horizon` item
-    # so if len(ref_time) != 1, 
-    # it sends a broader query without the horizon filter
+    # When several lead times are requested,
+    # a broader query without the horizon filter is sent.
     assert "forecast:horizon" not in query
     assert request.lead_times == [
         dt.timedelta(),
