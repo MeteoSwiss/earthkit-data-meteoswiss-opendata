@@ -19,7 +19,7 @@ def _search(
     url: str,
     body: dict[str, Any],
 ) -> list[str]:
-    """Execute a STAC search, following pagination links."""
+    """Execute a STAC search and follow pagination links."""
 
     response = SESSION.post(
         url,
@@ -28,17 +28,20 @@ def _search(
     )
     response.raise_for_status()
 
-    result: list[str] = []
     payload = response.json()
+    result: list[str] = []
 
+    # Collect the URL of every asset returned on this page.
     for feature in payload.get("features", []):
         for asset in feature.get("assets", {}).values():
             result.append(asset["href"])
 
+    # Follow STAC pagination links to retrieve remaining pages.
     for link in payload.get("links", []):
         if link.get("rel") != "next":
             continue
 
+        # The API currently describes pagination as a merged POST request.
         if (
             link.get("method") != "POST"
             or not link.get("merge")
@@ -47,6 +50,7 @@ def _search(
                 f"Unsupported STAC pagination link: {link}"
             )
 
+        # Extend the original search body with pagination parameters.
         next_body = {
             **body,
             **link.get("body", {}),
@@ -69,6 +73,7 @@ def get_asset_urls(request: Request) -> list[str]:
     forecast runs are returned.
     """
 
+    # Convert the validated request into a STAC search.
     urls = _search(
         f"{API_URL}/search",
         request.dump(),
@@ -79,10 +84,11 @@ def get_asset_urls(request: Request) -> list[str]:
             "No assets matched the request"
         )
 
-    # Preserve the behaviour of the original ogd_api.
-    if len(urls) == 1:
+    # No run selection is needed for one requested and returned asset.
+    if len(urls) == 1 and len(request.lead_times) == 1:
         return urls
 
+    # Extract reference time and lead time from OGD asset filenames.
     pattern = re.compile(
         r"-(?P<ref_time>\d{12})-"
         r"(?P<lead_time>\d+)-"
@@ -91,6 +97,9 @@ def get_asset_urls(request: Request) -> list[str]:
     def extract_key(
         url: str,
     ) -> tuple[dt.datetime, dt.timedelta]:
+        """Return the forecast run and lead time encoded in a URL."""
+
+        # Parse only the URL path, excluding query parameters.
         path = urlparse(url).path
         match = pattern.search(path)
 
@@ -99,22 +108,26 @@ def get_asset_urls(request: Request) -> list[str]:
                 f"No valid forecast datetime found in URL: {url}"
             )
 
+        # Convert YYYYMMDDHHMM into a timezone-aware UTC datetime.
         ref_time = dt.datetime.strptime(
             match.group("ref_time"),
             "%Y%m%d%H%M",
         ).replace(tzinfo=dt.timezone.utc)
 
+        # Convert the encoded forecast hour into a timedelta.
         lead_time = dt.timedelta(
             hours=float(match.group("lead_time"))
         )
 
         return ref_time, lead_time
 
+    # Index each asset by forecast run and lead time.
     asset_map = {
         extract_key(url): url
         for url in urls
     }
 
+    # Record which lead times are available for each forecast run.
     available: dict[
         dt.datetime,
         set[dt.timedelta],
@@ -126,8 +139,10 @@ def get_asset_urls(request: Request) -> list[str]:
             set(),
         ).add(lead_time)
 
+    # Lead times requested by the user.
     required = set(request.lead_times)
 
+    # Keep only runs containing every requested lead time.
     complete_runs = sorted(
         ref_time
         for ref_time, lead_times in available.items()
@@ -141,14 +156,17 @@ def get_asset_urls(request: Request) -> list[str]:
         )
 
     if request.reference_datetime == "latest":
+        # Select the newest complete forecast run.
         latest = complete_runs[-1]
 
+        # Preserve the lead-time order requested by the user.
         return [
             asset_map[(latest, lead_time)]
             for lead_time in request.lead_times
         ]
 
-    # Preserve the old lead-time-first ordering.
+    # For an explicit time range, return every complete run,
+    # ordered first by requested lead time and then by run time.
     return [
         asset_map[(ref_time, lead_time)]
         for lead_time in request.lead_times
