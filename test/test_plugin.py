@@ -8,10 +8,9 @@ from earthkit_data_meteoswiss_opendata.source import (
 
 
 def test_plugin_entry_point_is_registered() -> None:
-    matches = entry_points(
+    (plugin,) = entry_points(
         group="earthkit.data.sources",
         name="meteoswiss-opendata",
     )
 
-    assert len(matches) == 1
-    assert matches[0].load() is (MeteoSwissOpenDataSource)
+    assert plugin.load() is MeteoSwissOpenDataSource
