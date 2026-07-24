@@ -23,7 +23,7 @@ from pydantic.dataclasses import dataclass
 
 
 logger = logging.getLogger(__name__)
-_DURATION_ADAPTER = TypeAdapter(dt.timedelta)
+DurationAdapter = TypeAdapter(dt.timedelta)
 
 
 class Collection(enum.StrEnum):
@@ -284,7 +284,7 @@ class Request:
         # and select the complete run client-side.
         if len(self.lead_times) == 1:
             body["forecast:horizon"] = (
-                _DURATION_ADAPTER.dump_python(
+                DurationAdapter.dump_python(
                     self.lead_times[0],
                     mode="json",
                 )
