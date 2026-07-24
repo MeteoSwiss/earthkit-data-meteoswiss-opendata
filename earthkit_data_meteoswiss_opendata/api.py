@@ -72,13 +72,8 @@ def _search(
 
         # The API describes the next page as another POST request
         # whose body must be merged with the current search body.
-        if (
-            link.get("method") != "POST"
-            or not link.get("merge")
-        ):
-            raise RuntimeError(
-                f"Unsupported STAC pagination link: {link}"
-            )
+        if link.get("method") != "POST" or not link.get("merge"):
+            raise RuntimeError(f"Unsupported STAC pagination link: {link}")
 
         # Keep the search filters and add the next-page parameters.
         next_body = body | link.get("body", {})
@@ -108,9 +103,7 @@ def get_asset_urls(request: Request) -> list[str]:
     )
 
     if not urls:
-        raise ValueError(
-            "No assets matched the request"
-        )
+        raise ValueError("No assets matched the request")
 
     # No run selection is needed for one requested and returned asset.
     if len(urls) == 1 and len(request.lead_times) == 1:
@@ -132,9 +125,7 @@ def get_asset_urls(request: Request) -> list[str]:
         match = pattern.search(path)
 
         if match is None:
-            raise ValueError(
-                f"No valid forecast datetime found in URL: {url}"
-            )
+            raise ValueError(f"No valid forecast datetime found in URL: {url}")
 
         # Convert YYYYMMDDHHMM into a timezone-aware UTC datetime.
         ref_time = dt.datetime.strptime(
@@ -143,17 +134,12 @@ def get_asset_urls(request: Request) -> list[str]:
         ).replace(tzinfo=dt.timezone.utc)
 
         # Convert the encoded forecast hour into a timedelta.
-        lead_time = dt.timedelta(
-            hours=float(match.group("lead_time"))
-        )
+        lead_time = dt.timedelta(hours=float(match.group("lead_time")))
 
         return ref_time, lead_time
 
     # Index each asset by forecast run and lead time.
-    asset_map = {
-        extract_key(url): url
-        for url in urls
-    }
+    asset_map = {extract_key(url): url for url in urls}
 
     # Record which lead times are available for each forecast run.
     available: dict[
@@ -171,32 +157,18 @@ def get_asset_urls(request: Request) -> list[str]:
     required = set(request.lead_times)
 
     # Keep only runs containing every requested lead time.
-    complete_runs = sorted(
-        ref_time
-        for ref_time, lead_times in available.items()
-        if lead_times >= required
-    )
+    complete_runs = sorted(ref_time for ref_time, lead_times in available.items() if lead_times >= required)
 
     if not complete_runs:
-        raise ValueError(
-            "No complete forecast run contains all "
-            "requested lead times"
-        )
+        raise ValueError("No complete forecast run contains all requested lead times")
 
     if request.reference_datetime == "latest":
         # Select the newest complete forecast run.
         latest = complete_runs[-1]
 
         # Preserve the lead-time order requested by the user.
-        return [
-            asset_map[(latest, lead_time)]
-            for lead_time in request.lead_times
-        ]
+        return [asset_map[(latest, lead_time)] for lead_time in request.lead_times]
 
     # For an explicit time range, return every complete run,
     # ordered first by requested lead time and then by run time.
-    return [
-        asset_map[(ref_time, lead_time)]
-        for lead_time in request.lead_times
-        for ref_time in complete_runs
-    ]
+    return [asset_map[(ref_time, lead_time)] for lead_time in request.lead_times for ref_time in complete_runs]

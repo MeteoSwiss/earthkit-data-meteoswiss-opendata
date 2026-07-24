@@ -14,6 +14,4 @@ def test_plugin_entry_point_is_registered() -> None:
     )
 
     assert len(matches) == 1
-    assert matches[0].load() is (
-        MeteoSwissOpenDataSource
-    )
+    assert matches[0].load() is (MeteoSwissOpenDataSource)

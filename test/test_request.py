@@ -18,12 +18,9 @@ def test_single_lead_time_query() -> None:
     )
 
     assert request.dump() == {
-        "collections": [
-            "ch.meteoschweiz.ogd-forecasting-icon-ch2"
-        ],
+        "collections": ["ch.meteoschweiz.ogd-forecasting-icon-ch2"],
         "forecast:variable": "TOT_PREC",
-        "forecast:reference_datetime":
-            "2026-07-20T06:00:00Z",
+        "forecast:reference_datetime": "2026-07-20T06:00:00Z",
         "forecast:perturbed": False,
         "forecast:horizon": "PT1H",
     }
@@ -67,9 +64,7 @@ def test_latest_uses_48_hour_search_window() -> None:
         tzinfo=dt.timezone.utc,
     )
 
-    assert request.to_stac_query(now=now)[
-        "forecast:reference_datetime"
-    ] == "2026-07-18T12:00:00Z/.."
+    assert request.to_stac_query(now=now)["forecast:reference_datetime"] == "2026-07-18T12:00:00Z/.."
 
 
 def test_invalid_collection_is_rejected() -> None:

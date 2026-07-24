@@ -16,7 +16,6 @@ from .api import get_asset_urls
 from .request import Collection, Request
 
 
-
 class MeteoSwissOpenDataSource(Source):
     """Earthkit source for MeteoSwiss Open Data."""
 
@@ -27,11 +26,7 @@ class MeteoSwissOpenDataSource(Source):
         variable: str,
         perturbed: bool,
         ref_time: str | dt.datetime,
-        lead_time: (
-            str
-            | dt.timedelta
-            | list[str | dt.timedelta]
-        ),
+        lead_time: (str | dt.timedelta | list[str | dt.timedelta]),
     ) -> None:
         super().__init__()
 

@@ -25,7 +25,6 @@ def test_latest_selects_newest_complete_run(
         # Older complete run.
         "https://example.test/icon-ch2-202607200000-0-TOT_PREC.grib2",
         "https://example.test/icon-ch2-202607200000-1-TOT_PREC.grib2",
-
         # Newer incomplete run.
         "https://example.test/icon-ch2-202607200600-0-TOT_PREC.grib2",
     ]
@@ -36,9 +35,7 @@ def test_latest_selects_newest_complete_run(
         lambda url, body: urls,
     )
 
-    result = api.get_asset_urls(
-        make_request(["PT0H", "PT1H"])
-    )
+    result = api.get_asset_urls(make_request(["PT0H", "PT1H"]))
 
     assert result == [
         "https://example.test/icon-ch2-202607200000-0-TOT_PREC.grib2",
@@ -59,9 +56,7 @@ def test_no_assets_raises(
         ValueError,
         match="No assets matched",
     ):
-        api.get_asset_urls(
-            make_request("PT1H")
-        )
+        api.get_asset_urls(make_request("PT1H"))
 
 
 def test_no_complete_run_raises(
@@ -79,6 +74,4 @@ def test_no_complete_run_raises(
         ValueError,
         match="No complete forecast run",
     ):
-        api.get_asset_urls(
-            make_request(["PT0H", "PT1H"])
-        )
+        api.get_asset_urls(make_request(["PT0H", "PT1H"]))

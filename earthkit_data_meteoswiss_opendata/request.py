@@ -7,6 +7,7 @@ Distributed under the terms of the BSD 3-Clause License.
 
 SPDX-License-Identifier: BSD-3-Clause
 """
+
 import datetime as dt
 import enum
 import logging
@@ -43,23 +44,14 @@ def _normalise_datetime(value: str) -> str:
     """Convert an ISO 8601 datetime string to UTC."""
 
     try:
-        parsed = dt.datetime.fromisoformat(
-            value.replace("Z", "+00:00")
-        )
+        parsed = dt.datetime.fromisoformat(value.replace("Z", "+00:00"))
     except ValueError as exc:
-        raise ValueError(
-            f"Invalid ISO 8601 datetime: {value!r}"
-        ) from exc
+        raise ValueError(f"Invalid ISO 8601 datetime: {value!r}") from exc
 
     if parsed.tzinfo is None:
-        raise ValueError(
-            f"Datetime must include a timezone: {value!r}"
-        )
+        raise ValueError(f"Datetime must include a timezone: {value!r}")
 
-    parsed = (
-        parsed.astimezone(dt.timezone.utc)
-        .replace(microsecond=0)
-    )
+    parsed = parsed.astimezone(dt.timezone.utc).replace(microsecond=0)
 
     return parsed.strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -76,44 +68,22 @@ def _normalise_reference_datetime(value: str) -> str:
         return _normalise_datetime(parts[0])
 
     if len(parts) != 2:
-        raise ValueError(
-            f"Unable to parse reference_datetime: {value!r}"
-        )
+        raise ValueError(f"Unable to parse reference_datetime: {value!r}")
 
     lower, upper = parts
 
     if lower == upper == "..":
-        raise ValueError(
-            "At least one reference_datetime bound "
-            "must be specified"
-        )
+        raise ValueError("At least one reference_datetime bound must be specified")
 
-    normalised_lower = (
-        ".."
-        if lower == ".."
-        else _normalise_datetime(lower)
-    )
-    normalised_upper = (
-        ".."
-        if upper == ".."
-        else _normalise_datetime(upper)
-    )
+    normalised_lower = ".." if lower == ".." else _normalise_datetime(lower)
+    normalised_upper = ".." if upper == ".." else _normalise_datetime(upper)
 
-    if (
-        normalised_lower != ".."
-        and normalised_upper != ".."
-    ):
-        lower_dt = dt.datetime.fromisoformat(
-            normalised_lower.replace("Z", "+00:00")
-        )
-        upper_dt = dt.datetime.fromisoformat(
-            normalised_upper.replace("Z", "+00:00")
-        )
+    if normalised_lower != ".." and normalised_upper != "..":
+        lower_dt = dt.datetime.fromisoformat(normalised_lower.replace("Z", "+00:00"))
+        upper_dt = dt.datetime.fromisoformat(normalised_upper.replace("Z", "+00:00"))
 
         if upper_dt < lower_dt:
-            raise ValueError(
-                "reference_datetime bounds inverted"
-            )
+            raise ValueError("reference_datetime bounds inverted")
 
     return f"{normalised_lower}/{normalised_upper}"
 
@@ -173,28 +143,15 @@ class Request:
 
         if isinstance(value, dt.datetime):
             if value.tzinfo is None:
-                logger.warning(
-                    "Assuming UTC for a naive "
-                    "reference datetime"
-                )
-                value = value.replace(
-                    tzinfo=dt.timezone.utc
-                )
+                logger.warning("Assuming UTC for a naive reference datetime")
+                value = value.replace(tzinfo=dt.timezone.utc)
 
-            value = (
-                value.astimezone(dt.timezone.utc)
-                .replace(microsecond=0)
-            )
+            value = value.astimezone(dt.timezone.utc).replace(microsecond=0)
 
-            return value.strftime(
-                "%Y-%m-%dT%H:%M:%SZ"
-            )
+            return value.strftime("%Y-%m-%dT%H:%M:%SZ")
 
         if not isinstance(value, str):
-            raise ValueError(
-                "reference_datetime must be "
-                "a string or datetime"
-            )
+            raise ValueError("reference_datetime must be a string or datetime")
 
         return _normalise_reference_datetime(value)
 
@@ -206,29 +163,16 @@ class Request:
     ) -> dt.timedelta | list[dt.timedelta]:
         """Validate one or more forecast horizons."""
 
-        horizons = (
-            value
-            if isinstance(value, list)
-            else [value]
-        )
+        horizons = value if isinstance(value, list) else [value]
 
         if not horizons:
-            raise ValueError(
-                "At least one horizon must be requested"
-            )
+            raise ValueError("At least one horizon must be requested")
 
-        if any(
-            horizon < dt.timedelta(0)
-            for horizon in horizons
-        ):
-            raise ValueError(
-                "Forecast horizons cannot be negative"
-            )
+        if any(horizon < dt.timedelta(0) for horizon in horizons):
+            raise ValueError("Forecast horizons cannot be negative")
 
         if len(set(horizons)) != len(horizons):
-            raise ValueError(
-                "Forecast horizons must be unique"
-            )
+            raise ValueError("Forecast horizons must be unique")
 
         return value
 
@@ -251,31 +195,19 @@ class Request:
         reference_datetime = self.reference_datetime
 
         if reference_datetime == "latest":
-            now = now or dt.datetime.now(
-                tz=dt.timezone.utc
-            )
+            now = now or dt.datetime.now(tz=dt.timezone.utc)
 
             if now.tzinfo is None:
-                raise ValueError(
-                    "now must include a timezone"
-                )
+                raise ValueError("now must include a timezone")
 
-            cutoff = (
-                now.astimezone(dt.timezone.utc)
-                - dt.timedelta(hours=48)
-            )
+            cutoff = now.astimezone(dt.timezone.utc) - dt.timedelta(hours=48)
 
-            reference_datetime = (
-                f"{cutoff:%Y-%m-%dT%H:%M:%SZ}/.."
-            )
+            reference_datetime = f"{cutoff:%Y-%m-%dT%H:%M:%SZ}/.."
 
         body: dict[str, Any] = {
-            "collections": [
-                self.collection.stac_id
-            ],
+            "collections": [self.collection.stac_id],
             "forecast:variable": self.variable,
-            "forecast:reference_datetime":
-                reference_datetime,
+            "forecast:reference_datetime": reference_datetime,
             "forecast:perturbed": self.perturbed,
         }
 
@@ -283,11 +215,9 @@ class Request:
         # For multiple lead times, retrieve a broader result
         # and select the complete run client-side.
         if len(self.lead_times) == 1:
-            body["forecast:horizon"] = (
-                DurationAdapter.dump_python(
-                    self.lead_times[0],
-                    mode="json",
-                )
+            body["forecast:horizon"] = DurationAdapter.dump_python(
+                self.lead_times[0],
+                mode="json",
             )
 
         return body

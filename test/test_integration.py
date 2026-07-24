@@ -21,9 +21,7 @@ def test_main_nwp_use_case() -> None:
         lead_time=["PT0H", "PT1H", "PT2H"],
     )
 
-    dataset = forecast.to_xarray(
-        profile="grib"
-    )
+    dataset = forecast.to_xarray(profile="grib")
 
     assert dataset.sizes["step"] == 3
     assert len(dataset.data_vars) >= 1

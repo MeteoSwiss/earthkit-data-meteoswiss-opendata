@@ -53,8 +53,6 @@ def test_source_delegates_to_url_source(
 
     result = plugin_source.mutate()
 
-    get_asset_urls.assert_called_once_with(
-        plugin_source.request
-    )
+    get_asset_urls.assert_called_once_with(plugin_source.request)
     get_source.assert_called_once_with("url", urls)
     assert result is url_source
