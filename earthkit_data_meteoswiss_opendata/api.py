@@ -80,10 +80,7 @@ def _search(
             )
 
         # Keep the search filters and add the next-page parameters.
-        next_body = {
-            **body,
-            **link.get("body", {}),
-        }
+        next_body = body | link.get("body", {})
 
         # Retrieve the next page and append its asset URLs.
         result.extend(
