@@ -78,6 +78,7 @@ markers = [
 [tool.mypy]
 ignore_missing_imports = true
 disallow_untyped_defs = true
+plugins = pydantic.mypy
 
 [tool.coverage.run]
 omit = ["test/**", "doc/**"]
