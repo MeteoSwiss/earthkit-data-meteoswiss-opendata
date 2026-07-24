@@ -27,18 +27,7 @@ def test_search_collects_paginated_assets(
     """Collect asset URLs from the current and next result pages."""
     first_response = MagicMock()
     first_response.json.return_value = {
-        "features": [
-            {
-                "assets": {
-                    "forecast": {
-                        "href": (
-                            "https://example.test/"
-                            "first.grib2"
-                        )
-                    }
-                }
-            }
-        ],
+        "features": [{"assets": {"forecast": {"href": ("https://example.test/first.grib2")}}}],
         "links": [
             {
                 "rel": "next",
@@ -54,18 +43,7 @@ def test_search_collects_paginated_assets(
 
     second_response = MagicMock()
     second_response.json.return_value = {
-        "features": [
-            {
-                "assets": {
-                    "forecast": {
-                        "href": (
-                            "https://example.test/"
-                            "second.grib2"
-                        )
-                    }
-                }
-            }
-        ],
+        "features": [{"assets": {"forecast": {"href": ("https://example.test/second.grib2")}}}],
         "links": [],
     }
 
@@ -126,19 +104,10 @@ def test_latest_selects_newest_complete_run(
     """Skip a newer incomplete run."""
     urls = [
         # Older complete run.
-        (
-            "https://example.test/"
-            "icon-ch2-202607200000-0-TOT_PREC.grib2"
-        ),
-        (
-            "https://example.test/"
-            "icon-ch2-202607200000-1-TOT_PREC.grib2"
-        ),
+        ("https://example.test/icon-ch2-202607200000-0-TOT_PREC.grib2"),
+        ("https://example.test/icon-ch2-202607200000-1-TOT_PREC.grib2"),
         # Newer incomplete run.
-        (
-            "https://example.test/"
-            "icon-ch2-202607200600-0-TOT_PREC.grib2"
-        ),
+        ("https://example.test/icon-ch2-202607200600-0-TOT_PREC.grib2"),
     ]
 
     monkeypatch.setattr(
@@ -147,19 +116,11 @@ def test_latest_selects_newest_complete_run(
         lambda url, body: urls,
     )
 
-    result = api.get_asset_urls(
-        make_request(["PT0H", "PT1H"])
-    )
+    result = api.get_asset_urls(make_request(["PT0H", "PT1H"]))
 
     assert result == [
-        (
-            "https://example.test/"
-            "icon-ch2-202607200000-0-TOT_PREC.grib2"
-        ),
-        (
-            "https://example.test/"
-            "icon-ch2-202607200000-1-TOT_PREC.grib2"
-        ),
+        ("https://example.test/icon-ch2-202607200000-0-TOT_PREC.grib2"),
+        ("https://example.test/icon-ch2-202607200000-1-TOT_PREC.grib2"),
     ]
 
 
@@ -177,9 +138,7 @@ def test_no_assets_raises(
         ValueError,
         match="No assets matched",
     ):
-        api.get_asset_urls(
-            make_request("PT1H")
-        )
+        api.get_asset_urls(make_request("PT1H"))
 
 
 def test_no_complete_run_raises(
@@ -190,10 +149,7 @@ def test_no_complete_run_raises(
         api,
         "_search",
         lambda url, body: [
-            (
-                "https://example.test/"
-                "icon-ch2-202607200000-0-TOT_PREC.grib2"
-            ),
+            ("https://example.test/icon-ch2-202607200000-0-TOT_PREC.grib2"),
         ],
     )
 
@@ -201,6 +157,4 @@ def test_no_complete_run_raises(
         ValueError,
         match="No complete forecast run",
     ):
-        api.get_asset_urls(
-            make_request(["PT0H", "PT1H"])
-        )
+        api.get_asset_urls(make_request(["PT0H", "PT1H"]))
