@@ -27,8 +27,27 @@ def _search(
     url: str,
     body: dict[str, Any],
 ) -> list[str]:
-    """Execute a STAC search and follow pagination links."""
+    """Execute a STAC search and collect asset URLs from all result pages.
 
+    The STAC response contains matching items in ``features``. Each item
+    contains an ``assets`` mapping whose ``href`` values point to the
+    downloadable files.
+
+    When more results are available, the response contains a link with
+    ``rel="next"`` in ``links``. Its request parameters are merged with
+    the current search body and used to retrieve the next page.
+
+    Args:
+        url: STAC search endpoint or next-page URL.
+        body: JSON-compatible STAC search body.
+
+    Returns:
+        Asset URLs from the current page and any following pages.
+
+    Raises:
+        requests.HTTPError: If the STAC request fails.
+        RuntimeError: If an unsupported pagination link is returned.
+    """
     response = session.post(
         url,
         json=body,
@@ -39,17 +58,19 @@ def _search(
     payload = response.json()
     result: list[str] = []
 
-    # Collect the URL of every asset returned on this page.
+    # Each feature is a matching STAC item. Its assets contain
+    # the downloadable file URLs.
     for feature in payload.get("features", []):
         for asset in feature.get("assets", {}).values():
             result.append(asset["href"])
 
-    # Follow STAC pagination links to retrieve remaining pages.
+    # A link with rel="next" indicates another page of results.
     for link in payload.get("links", []):
         if link.get("rel") != "next":
             continue
 
-        # The API currently describes pagination as a merged POST request.
+        # The API describes the next page as another POST request
+        # whose body must be merged with the current search body.
         if (
             link.get("method") != "POST"
             or not link.get("merge")
@@ -58,12 +79,13 @@ def _search(
                 f"Unsupported STAC pagination link: {link}"
             )
 
-        # Extend the original search body with pagination parameters.
+        # Keep the search filters and add the next-page parameters.
         next_body = {
             **body,
             **link.get("body", {}),
         }
 
+        # Retrieve the next page and append its asset URLs.
         result.extend(
             _search(
                 link["href"],
