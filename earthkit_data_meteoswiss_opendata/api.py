@@ -19,9 +19,9 @@ from .request import Request
 
 
 API_URL = "https://data.geo.admin.ch/api/stac/v1"
-SESSION = requests.Session()
 TIMEOUT = 30
 
+session = requests.Session()
 
 def _search(
     url: str,
@@ -29,7 +29,7 @@ def _search(
 ) -> list[str]:
     """Execute a STAC search and follow pagination links."""
 
-    response = SESSION.post(
+    response = session.post(
         url,
         json=body,
         timeout=TIMEOUT,
