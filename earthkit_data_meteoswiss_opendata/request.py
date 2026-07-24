@@ -22,11 +22,11 @@ from pydantic import (
 from pydantic.dataclasses import dataclass
 
 
-LOG = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 _DURATION_ADAPTER = TypeAdapter(dt.timedelta)
 
 
-class Collection(str, enum.Enum):
+class Collection(enum.StrEnum):
     """Supported MeteoSwiss Open Data NWP collections."""
 
     ICON_CH1 = "ogd-forecasting-icon-ch1"
@@ -173,7 +173,7 @@ class Request:
 
         if isinstance(value, dt.datetime):
             if value.tzinfo is None:
-                LOG.warning(
+                logger.warning(
                     "Assuming UTC for a naive "
                     "reference datetime"
                 )
