@@ -11,13 +11,10 @@ SPDX-License-Identifier: BSD-3-Clause
 import datetime as dt
 
 from earthkit.data.sources import Source, get_source
-from pydantic import TypeAdapter
 
 from .api import get_asset_urls
 from .request import Collection, Request
 
-
-_REQUEST_ADAPTER = TypeAdapter(Request)
 
 
 class MeteoSwissOpenDataSource(Source):
@@ -38,14 +35,14 @@ class MeteoSwissOpenDataSource(Source):
     ) -> None:
         super().__init__()
 
-        self.request = _REQUEST_ADAPTER.validate_python(
-            {
-                "collection": collection,
-                "variable": variable,
-                "perturbed": perturbed,
-                "ref_time": ref_time,
-                "lead_time": lead_time,
-            }
+        # Pydantic validators accept and normalize the input types in request.py.
+        # Mypy only sees the final dataclass field types, thus the `ignore`.`
+        self.request = Request(
+            collection=collection,  # type: ignore[arg-type]
+            variable=variable,
+            perturbed=perturbed,
+            reference_datetime=ref_time,  # type: ignore[arg-type]
+            horizon=lead_time,  # type: ignore[arg-type]
         )
 
     def mutate(self) -> Source:

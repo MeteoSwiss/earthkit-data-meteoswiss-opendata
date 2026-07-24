@@ -23,6 +23,7 @@ TIMEOUT = 30
 
 session = requests.Session()
 
+
 def _search(
     url: str,
     body: dict[str, Any],
