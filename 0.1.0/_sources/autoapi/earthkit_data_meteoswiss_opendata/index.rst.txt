@@ -1,0 +1,179 @@
+earthkit_data_meteoswiss_opendata
+=================================
+
+.. py:module:: earthkit_data_meteoswiss_opendata
+
+.. autoapi-nested-parse::
+
+   Copyright (c) 2026 MeteoSwiss, contributors listed in AUTHORS
+
+   Distributed under the terms of the BSD 3-Clause License.
+
+   SPDX-License-Identifier: BSD-3-Clause
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/earthkit_data_meteoswiss_opendata/api/index
+   /autoapi/earthkit_data_meteoswiss_opendata/request/index
+   /autoapi/earthkit_data_meteoswiss_opendata/source/index
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   earthkit_data_meteoswiss_opendata.API_URL
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   earthkit_data_meteoswiss_opendata.Collection
+   earthkit_data_meteoswiss_opendata.Request
+   earthkit_data_meteoswiss_opendata.MeteoSwissOpenDataSource
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   earthkit_data_meteoswiss_opendata.get_asset_urls
+
+
+Package Contents
+----------------
+
+.. py:data:: API_URL
+   :value: 'https://data.geo.admin.ch/api/stac/v1'
+
+
+.. py:function:: get_asset_urls(request: earthkit_data_meteoswiss_opendata.request.Request) -> list[str]
+
+   Return assets matching a MeteoSwiss request.
+
+   For requests with several lead times, only complete
+   forecast runs are returned.
+
+
+.. py:class:: Collection
+
+   Bases: :py:obj:`enum.StrEnum`
+
+
+   Supported MeteoSwiss Open Data NWP collections.
+
+
+   .. py:attribute:: ICON_CH1
+      :value: 'ogd-forecasting-icon-ch1'
+
+
+
+   .. py:attribute:: ICON_CH2
+      :value: 'ogd-forecasting-icon-ch2'
+
+
+
+   .. py:attribute:: KENDA_CH1
+      :value: 'ogd-analysis-kenda-ch1'
+
+
+
+   .. py:property:: stac_id
+      :type: str
+
+
+      Return the full STAC collection identifier.
+
+
+.. py:class:: Request
+
+   Validated MeteoSwiss forecast request.
+
+   ``ref_time`` is accepted as an alias for
+   ``reference_datetime``.
+
+   ``lead_time`` is accepted as an alias for ``horizon``.
+
+
+   .. py:attribute:: collection
+      :type:  Collection
+
+
+   .. py:attribute:: variable
+      :type:  Annotated[str, Field(min_length=1)]
+
+
+   .. py:attribute:: reference_datetime
+      :type:  Annotated[str, Field(validation_alias=AliasChoices('reference_datetime', 'ref_time'))]
+
+
+   .. py:attribute:: perturbed
+      :type:  bool
+
+
+   .. py:attribute:: horizon
+      :type:  Annotated[datetime.timedelta | list[datetime.timedelta], Field(validation_alias=AliasChoices('horizon', 'lead_time'))]
+
+
+   .. py:method:: validate_reference_datetime(value: Any) -> str
+      :classmethod:
+
+
+      Validate and normalize the reference datetime.
+
+
+
+   .. py:method:: validate_horizon(value: datetime.timedelta | list[datetime.timedelta]) -> datetime.timedelta | list[datetime.timedelta]
+      :classmethod:
+
+
+      Validate one or more forecast horizons.
+
+
+
+   .. py:property:: lead_times
+      :type: list[datetime.timedelta]
+
+
+      Return the requested horizons as a list.
+
+
+   .. py:method:: to_stac_query(*, now: datetime.datetime | None = None) -> dict[str, Any]
+
+      Create the STAC search request body.
+
+
+
+   .. py:method:: dump() -> dict[str, Any]
+
+      Backward-compatible alias for the old API.
+
+
+
+.. py:class:: MeteoSwissOpenDataSource(*, collection: earthkit_data_meteoswiss_opendata.request.Collection | str, variable: str, perturbed: bool, ref_time: str | datetime.datetime, lead_time: str | datetime.timedelta | list[str | datetime.timedelta])
+
+   Bases: :py:obj:`earthkit.data.sources.Source`
+
+
+   Earthkit source for MeteoSwiss Open Data.
+
+
+   .. py:attribute:: request
+
+
+   .. py:method:: mutate() -> earthkit.data.sources.Source
+
+      Convert the request into Earthkit's URL source.
+
+
+
