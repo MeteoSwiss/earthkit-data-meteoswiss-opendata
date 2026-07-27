@@ -44,6 +44,9 @@ html_theme_options = {
 # (BUG in theme: https://github.com/pydata/pydata-sphinx-theme/issues/1662)
 html_sidebars = {"usage": [], "changelog": [], "migration_guide": [], "readme": []}
 
+html_static_path = ["_static"]
+html_css_files = ["custom.css"]
+
 napoleon_use_param = False  # improve parameters description
 add_module_names = False  # avoid the display of redundant module names
 
