@@ -39,8 +39,7 @@ With Poetry:
 
     $ poetry add earthkit-data-meteoswiss-opendata
 
-Installing the package registers the ``meteoswiss-opendata`` source with
-``earthkit-data``. No change to ``earthkit-data`` itself is required.
+Installing the package also installs ``earthkit-data`` and automatically registers the ``meteoswiss-opendata`` source plugin. No additional plugin configuration is required.
 
 Using the Library
 -----------------
