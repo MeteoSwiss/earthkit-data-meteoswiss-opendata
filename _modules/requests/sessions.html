@@ -1,0 +1,1375 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>requests.sessions &#8212; earthkit-data-meteoswiss-opendata</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8e5abdd0" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=07915626"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/requests/sessions';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '_static/switcher_config.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="dev" />
+    <meta name="docbuild:last-update" content="27.07.2026"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/app-icon_meteoswiss_rounded_rgb.png" class="logo__image only-light" alt=""/>
+    <img src="../../_static/app-icon_meteoswiss_rounded_rgb.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">earthkit-data-meteoswiss-opendata</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../readme.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../autoapi/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../readme.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../autoapi/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">requests.sessions</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for requests.sessions</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">requests.sessions</span>
+<span class="sd">~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">This module provides a Session object to manage and persist settings across</span>
+<span class="sd">requests (cookies, auth, proxies).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">MutableMapping</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">timedelta</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">._internal_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">to_native_string</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._types</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_prepared</span> <span class="k">as</span> <span class="n">_is_prepared</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.adapters</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPAdapter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">_basic_auth_str</span>  <span class="c1"># type: ignore[reportPrivateUsage]</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.compat</span><span class="w"> </span><span class="kn">import</span> <span class="n">cookielib</span><span class="p">,</span> <span class="n">urljoin</span><span class="p">,</span> <span class="n">urlparse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.cookies</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">RequestsCookieJar</span><span class="p">,</span>
+    <span class="n">cookiejar_from_dict</span><span class="p">,</span>
+    <span class="n">extract_cookies_to_jar</span><span class="p">,</span>
+    <span class="n">merge_cookies</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ChunkedEncodingError</span><span class="p">,</span>
+    <span class="n">ContentDecodingError</span><span class="p">,</span>
+    <span class="n">InvalidSchema</span><span class="p">,</span>
+    <span class="n">TooManyRedirects</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.hooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">default_hooks</span><span class="p">,</span> <span class="n">dispatch_hook</span>
+
+<span class="c1"># formerly defined here, reexposed here for backward compatibility</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>  <span class="c1"># noqa: F401</span>
+    <span class="n">DEFAULT_REDIRECT_LIMIT</span><span class="p">,</span>
+    <span class="n">REDIRECT_STATI</span><span class="p">,</span>  <span class="c1"># type: ignore[reportUnusedImport]</span>
+    <span class="n">PreparedRequest</span><span class="p">,</span>
+    <span class="n">Request</span><span class="p">,</span>
+    <span class="n">Response</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.status_codes</span><span class="w"> </span><span class="kn">import</span> <span class="n">codes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.structures</span><span class="w"> </span><span class="kn">import</span> <span class="n">CaseInsensitiveDict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>  <span class="c1"># noqa: F401</span>
+    <span class="n">DEFAULT_PORTS</span><span class="p">,</span>
+    <span class="n">default_headers</span><span class="p">,</span>
+    <span class="n">get_auth_from_url</span><span class="p">,</span>
+    <span class="n">get_environ_proxies</span><span class="p">,</span>
+    <span class="n">get_netrc_auth</span><span class="p">,</span>
+    <span class="n">requote_uri</span><span class="p">,</span>
+    <span class="n">resolve_proxies</span><span class="p">,</span>
+    <span class="n">rewind_body</span><span class="p">,</span>
+    <span class="n">should_bypass_proxies</span><span class="p">,</span>  <span class="c1"># type: ignore[reportUnusedImport]  # re-export for external consumers</span>
+    <span class="n">to_key_val_list</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">http.cookiejar</span><span class="w"> </span><span class="kn">import</span> <span class="n">CookieJar</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Self</span><span class="p">,</span> <span class="n">Unpack</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">_types</span> <span class="k">as</span> <span class="n">_t</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.adapters</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseAdapter</span>
+
+<span class="c1"># Preferred clock, based on which one is more accurate on a given system.</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;win32&quot;</span><span class="p">:</span>
+    <span class="n">preferred_clock</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">preferred_clock</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">merge_setting</span><span class="p">(</span>
+    <span class="n">request_setting</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">session_setting</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">dict_class</span><span class="p">:</span> <span class="nb">type</span> <span class="o">=</span> <span class="n">OrderedDict</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Determines appropriate setting for a given request, taking into account</span>
+<span class="sd">    the explicit setting on that request, and the setting in the session. If a</span>
+<span class="sd">    setting is a dictionary, they will be merged together using `dict_class`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">session_setting</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">request_setting</span>
+
+    <span class="k">if</span> <span class="n">request_setting</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">session_setting</span>
+
+    <span class="c1"># Bypass if not a dictionary (e.g. verify)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span>
+        <span class="nb">isinstance</span><span class="p">(</span><span class="n">session_setting</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">request_setting</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">)</span>
+    <span class="p">):</span>
+        <span class="k">return</span> <span class="n">request_setting</span>
+
+    <span class="n">merged_setting</span> <span class="o">=</span> <span class="n">dict_class</span><span class="p">(</span><span class="n">to_key_val_list</span><span class="p">(</span><span class="n">session_setting</span><span class="p">))</span>  <span class="c1"># type: ignore[arg-type]  # isinstance narrows Any to Mapping[Unknown]</span>
+    <span class="n">merged_setting</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">to_key_val_list</span><span class="p">(</span><span class="n">request_setting</span><span class="p">))</span>  <span class="c1"># type: ignore[arg-type]</span>
+
+    <span class="c1"># Remove keys that are set to None. Extract keys first to avoid altering</span>
+    <span class="c1"># the dictionary during iteration.</span>
+    <span class="n">none_keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">merged_setting</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">none_keys</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">merged_setting</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">merged_setting</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">merge_hooks</span><span class="p">(</span>
+    <span class="n">request_hooks</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">HooksType</span><span class="p">,</span>
+    <span class="n">session_hooks</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">HooksType</span><span class="p">,</span>
+    <span class="n">dict_class</span><span class="p">:</span> <span class="nb">type</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_t</span><span class="o">.</span><span class="n">HooksType</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Properly merges both requests and session hooks.</span>
+
+<span class="sd">    This is necessary because when request_hooks == {&#39;response&#39;: []}, the</span>
+<span class="sd">    merge breaks Session hooks entirely.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">session_hooks</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">session_hooks</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="k">return</span> <span class="n">request_hooks</span>
+
+    <span class="k">if</span> <span class="n">request_hooks</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">request_hooks</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="k">return</span> <span class="n">session_hooks</span>
+
+    <span class="k">return</span> <span class="n">merge_setting</span><span class="p">(</span><span class="n">request_hooks</span><span class="p">,</span> <span class="n">session_hooks</span><span class="p">,</span> <span class="n">dict_class</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SessionRedirectMixin</span><span class="p">:</span>
+    <span class="n">max_redirects</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">trust_env</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">cookies</span><span class="p">:</span> <span class="n">RequestsCookieJar</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">PreparedRequest</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span> <span class="o">...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_redirect_target</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resp</span><span class="p">:</span> <span class="n">Response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Receives a Response. Returns a redirect URI or ``None``&quot;&quot;&quot;</span>
+        <span class="c1"># Due to the nature of how requests processes redirects this method will</span>
+        <span class="c1"># be called at least once upon the original response and at least twice</span>
+        <span class="c1"># on each subsequent redirect response (if any).</span>
+        <span class="c1"># If a custom mixin is used to handle this logic, it may be advantageous</span>
+        <span class="c1"># to cache the redirect location onto the response object as a private</span>
+        <span class="c1"># attribute.</span>
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">is_redirect</span><span class="p">:</span>
+            <span class="n">location</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">]</span>
+            <span class="c1"># Currently the underlying http module on py3 decode headers</span>
+            <span class="c1"># in latin1, but empirical evidence suggests that latin1 is very</span>
+            <span class="c1"># rarely used with non-ASCII characters in HTTP headers.</span>
+            <span class="c1"># It is more likely to get UTF8 header rather than latin1.</span>
+            <span class="c1"># This causes incorrect handling of UTF8 encoded location headers.</span>
+            <span class="c1"># To solve this, we re-encode the location in latin1.</span>
+            <span class="n">location</span> <span class="o">=</span> <span class="n">location</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;latin1&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">to_native_string</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="s2">&quot;utf8&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">should_strip_auth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">new_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Decide whether Authorization header should be removed when redirecting&quot;&quot;&quot;</span>
+        <span class="n">old_parsed</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">old_url</span><span class="p">)</span>
+        <span class="n">new_parsed</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">new_url</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">old_parsed</span><span class="o">.</span><span class="n">hostname</span> <span class="o">!=</span> <span class="n">new_parsed</span><span class="o">.</span><span class="n">hostname</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="c1"># Special case: allow http -&gt; https redirect when using the standard</span>
+        <span class="c1"># ports. This isn&#39;t specified by RFC 7235, but is kept to avoid</span>
+        <span class="c1"># breaking backwards compatibility with older versions of requests</span>
+        <span class="c1"># that allowed any redirects on the same host.</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">old_parsed</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s2">&quot;http&quot;</span>
+            <span class="ow">and</span> <span class="n">old_parsed</span><span class="o">.</span><span class="n">port</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="n">new_parsed</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s2">&quot;https&quot;</span>
+            <span class="ow">and</span> <span class="n">new_parsed</span><span class="o">.</span><span class="n">port</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">443</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="c1"># Handle default port usage corresponding to scheme.</span>
+        <span class="n">changed_port</span> <span class="o">=</span> <span class="n">old_parsed</span><span class="o">.</span><span class="n">port</span> <span class="o">!=</span> <span class="n">new_parsed</span><span class="o">.</span><span class="n">port</span>
+        <span class="n">changed_scheme</span> <span class="o">=</span> <span class="n">old_parsed</span><span class="o">.</span><span class="n">scheme</span> <span class="o">!=</span> <span class="n">new_parsed</span><span class="o">.</span><span class="n">scheme</span>
+        <span class="n">default_port</span> <span class="o">=</span> <span class="p">(</span><span class="n">DEFAULT_PORTS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">old_parsed</span><span class="o">.</span><span class="n">scheme</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="ow">not</span> <span class="n">changed_scheme</span>
+            <span class="ow">and</span> <span class="n">old_parsed</span><span class="o">.</span><span class="n">port</span> <span class="ow">in</span> <span class="n">default_port</span>
+            <span class="ow">and</span> <span class="n">new_parsed</span><span class="o">.</span><span class="n">port</span> <span class="ow">in</span> <span class="n">default_port</span>
+        <span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="c1"># Standard case: root URI must match</span>
+        <span class="k">return</span> <span class="n">changed_port</span> <span class="ow">or</span> <span class="n">changed_scheme</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">resolve_redirects</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">resp</span><span class="p">:</span> <span class="n">Response</span><span class="p">,</span>
+        <span class="n">req</span><span class="p">:</span> <span class="n">PreparedRequest</span><span class="p">,</span>
+        <span class="n">stream</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">TimeoutType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">verify</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">VerifyType</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">cert</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">CertType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">proxies</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">yield_requests</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">adapter_kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">Response</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Receives a Response. Returns a generator of Responses or Requests.&quot;&quot;&quot;</span>
+
+        <span class="n">hist</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Response</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># keep track of history</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_redirect_target</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
+        <span class="n">previous_fragment</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">fragment</span>
+        <span class="k">while</span> <span class="n">url</span><span class="p">:</span>
+            <span class="n">prepared_request</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+            <span class="c1"># Update history and keep track of redirects.</span>
+            <span class="n">resp</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="n">hist</span><span class="p">[:]</span>
+            <span class="n">hist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">resp</span><span class="o">.</span><span class="n">content</span>  <span class="c1"># Consume socket so it can be released</span>
+            <span class="k">except</span> <span class="p">(</span><span class="n">ChunkedEncodingError</span><span class="p">,</span> <span class="n">ContentDecodingError</span><span class="p">,</span> <span class="ne">RuntimeError</span><span class="p">):</span>
+                <span class="n">resp</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">decode_content</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">history</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_redirects</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">TooManyRedirects</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Exceeded </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_redirects</span><span class="si">}</span><span class="s2"> redirects.&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">=</span><span class="n">resp</span>
+                <span class="p">)</span>
+
+            <span class="c1"># Release the connection back into the pool.</span>
+            <span class="n">resp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+            <span class="c1"># Handle redirection without scheme (see: RFC 1808 Section 4)</span>
+            <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;//&quot;</span><span class="p">):</span>
+                <span class="n">parsed_rurl</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;:&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">to_native_string</span><span class="p">(</span><span class="n">parsed_rurl</span><span class="o">.</span><span class="n">scheme</span><span class="p">),</span> <span class="n">url</span><span class="p">])</span>
+
+            <span class="c1"># Normalize url case and attach previous fragment if needed (RFC 7231 7.1.2)</span>
+            <span class="n">parsed</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">parsed</span><span class="o">.</span><span class="n">fragment</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="ow">and</span> <span class="n">previous_fragment</span><span class="p">:</span>
+                <span class="n">parsed</span> <span class="o">=</span> <span class="n">parsed</span><span class="o">.</span><span class="n">_replace</span><span class="p">(</span><span class="n">fragment</span><span class="o">=</span><span class="n">previous_fragment</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">parsed</span><span class="o">.</span><span class="n">fragment</span><span class="p">:</span>
+                <span class="n">previous_fragment</span> <span class="o">=</span> <span class="n">parsed</span><span class="o">.</span><span class="n">fragment</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="n">parsed</span><span class="o">.</span><span class="n">geturl</span><span class="p">()</span>
+
+            <span class="c1"># Facilitate relative &#39;location&#39; headers, as allowed by RFC 7231.</span>
+            <span class="c1"># (e.g. &#39;/path/to/resource&#39; instead of &#39;http://domain.tld/path/to/resource&#39;)</span>
+            <span class="c1"># Compliant with RFC3986, we percent encode the url.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">parsed</span><span class="o">.</span><span class="n">netloc</span><span class="p">:</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">requote_uri</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="n">requote_uri</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+            <span class="n">prepared_request</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">to_native_string</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">rebuild_method</span><span class="p">(</span><span class="n">prepared_request</span><span class="p">,</span> <span class="n">resp</span><span class="p">)</span>
+
+            <span class="c1"># https://github.com/psf/requests/issues/1084</span>
+            <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span>
+                <span class="n">codes</span><span class="o">.</span><span class="n">temporary_redirect</span><span class="p">,</span>
+                <span class="n">codes</span><span class="o">.</span><span class="n">permanent_redirect</span><span class="p">,</span>
+            <span class="p">):</span>
+                <span class="c1"># https://github.com/psf/requests/issues/3490</span>
+                <span class="n">purged_headers</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Content-Length&quot;</span><span class="p">,</span> <span class="s2">&quot;Content-Type&quot;</span><span class="p">,</span> <span class="s2">&quot;Transfer-Encoding&quot;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">header</span> <span class="ow">in</span> <span class="n">purged_headers</span><span class="p">:</span>
+                    <span class="n">prepared_request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="n">prepared_request</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="n">headers</span> <span class="o">=</span> <span class="n">prepared_request</span><span class="o">.</span><span class="n">headers</span>
+            <span class="n">headers</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;Cookie&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+            <span class="c1"># Extract any cookies sent on the response to the cookiejar</span>
+            <span class="c1"># in the new request. Because we&#39;ve mutated our copied prepared</span>
+            <span class="c1"># request, use the old one that we haven&#39;t yet touched.</span>
+            <span class="n">cookie_jar</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">&quot;CookieJar&quot;</span><span class="p">,</span> <span class="n">prepared_request</span><span class="o">.</span><span class="n">_cookies</span><span class="p">)</span>  <span class="c1"># type: ignore[reportPrivateUsage]</span>
+            <span class="n">extract_cookies_to_jar</span><span class="p">(</span><span class="n">cookie_jar</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">raw</span><span class="p">)</span>
+            <span class="n">merge_cookies</span><span class="p">(</span><span class="n">cookie_jar</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cookies</span><span class="p">)</span>
+            <span class="n">prepared_request</span><span class="o">.</span><span class="n">prepare_cookies</span><span class="p">(</span><span class="n">cookie_jar</span><span class="p">)</span>
+
+            <span class="c1"># Rebuild auth and proxy information.</span>
+            <span class="n">proxies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rebuild_proxies</span><span class="p">(</span><span class="n">prepared_request</span><span class="p">,</span> <span class="n">proxies</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rebuild_auth</span><span class="p">(</span><span class="n">prepared_request</span><span class="p">,</span> <span class="n">resp</span><span class="p">)</span>
+
+            <span class="c1"># A failed tell() sets `_body_position` to `object()`. This non-None</span>
+            <span class="c1"># value ensures `rewindable` will be True, allowing us to raise an</span>
+            <span class="c1"># UnrewindableBodyError, instead of hanging the connection.</span>
+            <span class="n">rewindable</span> <span class="o">=</span> <span class="n">prepared_request</span><span class="o">.</span><span class="n">_body_position</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span>  <span class="c1"># type: ignore[reportPrivateUsage]</span>
+                <span class="s2">&quot;Content-Length&quot;</span> <span class="ow">in</span> <span class="n">headers</span> <span class="ow">or</span> <span class="s2">&quot;Transfer-Encoding&quot;</span> <span class="ow">in</span> <span class="n">headers</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Attempt to rewind consumed file-like object.</span>
+            <span class="k">if</span> <span class="n">rewindable</span><span class="p">:</span>
+                <span class="n">rewind_body</span><span class="p">(</span><span class="n">prepared_request</span><span class="p">)</span>
+
+            <span class="c1"># Override the original request.</span>
+            <span class="n">req</span> <span class="o">=</span> <span class="n">prepared_request</span>
+
+            <span class="k">if</span> <span class="n">yield_requests</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">req</span>  <span class="c1"># type: ignore[misc]  # Internal use only, returns PreparedRequest</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span>
+                    <span class="n">req</span><span class="p">,</span>
+                    <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span>
+                    <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+                    <span class="n">verify</span><span class="o">=</span><span class="n">verify</span><span class="p">,</span>
+                    <span class="n">cert</span><span class="o">=</span><span class="n">cert</span><span class="p">,</span>
+                    <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">,</span>
+                    <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">adapter_kwargs</span><span class="p">,</span>
+                <span class="p">)</span>
+
+                <span class="n">extract_cookies_to_jar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cookies</span><span class="p">,</span> <span class="n">prepared_request</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">raw</span><span class="p">)</span>
+
+                <span class="c1"># extract redirect url, if any, for the next loop</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_redirect_target</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
+                <span class="k">yield</span> <span class="n">resp</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">rebuild_auth</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">prepared_request</span><span class="p">:</span> <span class="n">PreparedRequest</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="n">Response</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;When being redirected we may want to strip authentication from the</span>
+<span class="sd">        request to avoid leaking credentials. This method intelligently removes</span>
+<span class="sd">        and reapplies authentication where possible to avoid credential loss.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">original_request</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">request</span>
+        <span class="k">assert</span> <span class="n">_is_prepared</span><span class="p">(</span><span class="n">original_request</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">_is_prepared</span><span class="p">(</span><span class="n">prepared_request</span><span class="p">)</span>
+
+        <span class="n">headers</span> <span class="o">=</span> <span class="n">prepared_request</span><span class="o">.</span><span class="n">headers</span>
+        <span class="n">original_url</span> <span class="o">=</span> <span class="n">original_request</span><span class="o">.</span><span class="n">url</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">prepared_request</span><span class="o">.</span><span class="n">url</span>
+
+        <span class="k">if</span> <span class="s2">&quot;Authorization&quot;</span> <span class="ow">in</span> <span class="n">headers</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">should_strip_auth</span><span class="p">(</span><span class="n">original_url</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+            <span class="c1"># If we get redirected to a new host, we should strip out any</span>
+            <span class="c1"># authentication headers.</span>
+            <span class="k">del</span> <span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Authorization&quot;</span><span class="p">]</span>
+
+        <span class="c1"># .netrc might have more auth for us on our new host.</span>
+        <span class="n">new_auth</span> <span class="o">=</span> <span class="n">get_netrc_auth</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trust_env</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">new_auth</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">prepared_request</span><span class="o">.</span><span class="n">prepare_auth</span><span class="p">(</span><span class="n">new_auth</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">rebuild_proxies</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">prepared_request</span><span class="p">:</span> <span class="n">PreparedRequest</span><span class="p">,</span>
+        <span class="n">proxies</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method re-evaluates the proxy configuration by considering the</span>
+<span class="sd">        environment variables. If we are redirected to a URL covered by</span>
+<span class="sd">        NO_PROXY, we strip the proxy configuration. Otherwise, we set missing</span>
+<span class="sd">        proxy keys for this URL (in case they were stripped by a previous</span>
+<span class="sd">        redirect).</span>
+
+<span class="sd">        This method also replaces the Proxy-Authorization header where</span>
+<span class="sd">        necessary.</span>
+
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">_is_prepared</span><span class="p">(</span><span class="n">prepared_request</span><span class="p">)</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="n">prepared_request</span><span class="o">.</span><span class="n">headers</span>
+        <span class="n">scheme</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">prepared_request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">scheme</span>
+        <span class="n">new_proxies</span> <span class="o">=</span> <span class="n">resolve_proxies</span><span class="p">(</span><span class="n">prepared_request</span><span class="p">,</span> <span class="n">proxies</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">trust_env</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;Proxy-Authorization&quot;</span> <span class="ow">in</span> <span class="n">headers</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Proxy-Authorization&quot;</span><span class="p">]</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">username</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="n">get_auth_from_url</span><span class="p">(</span><span class="n">new_proxies</span><span class="p">[</span><span class="n">scheme</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">username</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+
+        <span class="c1"># urllib3 handles proxy authorization for us in the standard adapter.</span>
+        <span class="c1"># Avoid appending this to TLS tunneled requests where it may be leaked.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">scheme</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;https&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">username</span> <span class="ow">and</span> <span class="n">password</span><span class="p">:</span>
+            <span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Proxy-Authorization&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_basic_auth_str</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">new_proxies</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">rebuild_method</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">prepared_request</span><span class="p">:</span> <span class="n">PreparedRequest</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="n">Response</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;When being redirected we may want to change the method of the request</span>
+<span class="sd">        based on certain specs or browser behavior.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="n">prepared_request</span><span class="o">.</span><span class="n">method</span>
+
+        <span class="c1"># https://tools.ietf.org/html/rfc7231#section-6.4.4</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">codes</span><span class="o">.</span><span class="n">see_other</span> <span class="ow">and</span> <span class="n">method</span> <span class="o">!=</span> <span class="s2">&quot;HEAD&quot;</span><span class="p">:</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;GET&quot;</span>
+
+        <span class="c1"># Do what the browsers do, despite standards...</span>
+        <span class="c1"># First, turn 302s into GETs.</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">codes</span><span class="o">.</span><span class="n">found</span> <span class="ow">and</span> <span class="n">method</span> <span class="o">!=</span> <span class="s2">&quot;HEAD&quot;</span><span class="p">:</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;GET&quot;</span>
+
+        <span class="c1"># Second, if a POST is responded to with a 301, turn it into a GET.</span>
+        <span class="c1"># This bizarre behaviour is explained in Issue 1704.</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">codes</span><span class="o">.</span><span class="n">moved</span> <span class="ow">and</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;GET&quot;</span>
+
+        <span class="n">prepared_request</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Session</span><span class="p">(</span><span class="n">SessionRedirectMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A Requests session.</span>
+
+<span class="sd">    Provides cookie persistence, connection-pooling, and configuration.</span>
+
+<span class="sd">    Basic Usage::</span>
+
+<span class="sd">      &gt;&gt;&gt; import requests</span>
+<span class="sd">      &gt;&gt;&gt; s = requests.Session()</span>
+<span class="sd">      &gt;&gt;&gt; s.get(&#39;https://httpbin.org/get&#39;)</span>
+<span class="sd">      &lt;Response [200]&gt;</span>
+
+<span class="sd">    Or as a context manager::</span>
+
+<span class="sd">      &gt;&gt;&gt; with requests.Session() as s:</span>
+<span class="sd">      ...     s.get(&#39;https://httpbin.org/get&#39;)</span>
+<span class="sd">      &lt;Response [200]&gt;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">headers</span><span class="p">:</span> <span class="n">CaseInsensitiveDict</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">auth</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">AuthType</span>
+    <span class="n">proxies</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
+    <span class="n">hooks</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">_t</span><span class="o">.</span><span class="n">HookType</span><span class="p">]]</span>
+    <span class="n">params</span><span class="p">:</span> <span class="n">MutableMapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+    <span class="n">stream</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">verify</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">VerifyType</span>
+    <span class="n">cert</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">CertType</span>
+    <span class="n">max_redirects</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">trust_env</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">cookies</span><span class="p">:</span> <span class="n">RequestsCookieJar</span>
+    <span class="n">adapters</span><span class="p">:</span> <span class="n">MutableMapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseAdapter</span><span class="p">]</span>
+
+    <span class="n">__attrs__</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;headers&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cookies&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;auth&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;proxies&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;hooks&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;verify&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cert&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;adapters&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;stream&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;trust_env&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;max_redirects&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1">#: A case-insensitive dictionary of headers to be sent on each</span>
+        <span class="c1">#: :class:`Request &lt;Request&gt;` sent from this</span>
+        <span class="c1">#: :class:`Session &lt;Session&gt;`.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="n">default_headers</span><span class="p">()</span>
+
+        <span class="c1">#: Default Authentication tuple or object to attach to</span>
+        <span class="c1">#: :class:`Request &lt;Request&gt;`.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1">#: Dictionary mapping protocol or protocol and host to the URL of the proxy</span>
+        <span class="c1">#: (e.g. {&#39;http&#39;: &#39;foo.bar:3128&#39;, &#39;http://host.name&#39;: &#39;foo.bar:4012&#39;}) to</span>
+        <span class="c1">#: be used on each :class:`Request &lt;Request&gt;`.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">proxies</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1">#: Event-handling hooks.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hooks</span> <span class="o">=</span> <span class="n">default_hooks</span><span class="p">()</span>
+
+        <span class="c1">#: Dictionary of querystring data to attach to each</span>
+        <span class="c1">#: :class:`Request &lt;Request&gt;`. The dictionary values may be lists for</span>
+        <span class="c1">#: representing multivalued query parameters.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1">#: Stream response content default.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stream</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1">#: SSL Verification default.</span>
+        <span class="c1">#: Defaults to `True`, requiring requests to verify the TLS certificate at the</span>
+        <span class="c1">#: remote end.</span>
+        <span class="c1">#: If verify is set to `False`, requests will accept any TLS certificate</span>
+        <span class="c1">#: presented by the server, and will ignore hostname mismatches and/or</span>
+        <span class="c1">#: expired certificates, which will make your application vulnerable to</span>
+        <span class="c1">#: man-in-the-middle (MitM) attacks.</span>
+        <span class="c1">#: Only set this to `False` for testing.</span>
+        <span class="c1">#: If verify is set to a string, it must be the path to a CA bundle file</span>
+        <span class="c1">#: that will be used to verify the TLS certificate.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verify</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1">#: SSL client certificate default, if String, path to ssl client</span>
+        <span class="c1">#: cert file (.pem). If Tuple, (&#39;cert&#39;, &#39;key&#39;) pair.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cert</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1">#: Maximum number of redirects allowed. If the request exceeds this</span>
+        <span class="c1">#: limit, a :class:`TooManyRedirects` exception is raised.</span>
+        <span class="c1">#: This defaults to requests.models.DEFAULT_REDIRECT_LIMIT, which is</span>
+        <span class="c1">#: 30.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_redirects</span> <span class="o">=</span> <span class="n">DEFAULT_REDIRECT_LIMIT</span>
+
+        <span class="c1">#: Trust environment settings for proxy configuration, default</span>
+        <span class="c1">#: authentication and similar.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trust_env</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1">#: A CookieJar containing all currently outstanding cookies set on this</span>
+        <span class="c1">#: session. By default it is a</span>
+        <span class="c1">#: :class:`RequestsCookieJar &lt;requests.cookies.RequestsCookieJar&gt;`, but</span>
+        <span class="c1">#: may be any other ``cookielib.CookieJar`` compatible object.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cookies</span> <span class="o">=</span> <span class="n">cookiejar_from_dict</span><span class="p">({})</span>
+
+        <span class="c1"># Default connection adapters.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adapters</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">&quot;https://&quot;</span><span class="p">,</span> <span class="n">HTTPAdapter</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">&quot;http://&quot;</span><span class="p">,</span> <span class="n">HTTPAdapter</span><span class="p">())</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">prepare_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PreparedRequest</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructs a :class:`PreparedRequest &lt;PreparedRequest&gt;` for</span>
+<span class="sd">        transmission and returns it. The :class:`PreparedRequest` has settings</span>
+<span class="sd">        merged from the :class:`Request &lt;Request&gt;` instance and those of the</span>
+<span class="sd">        :class:`Session`.</span>
+
+<span class="sd">        :param request: :class:`Request` instance to prepare with this</span>
+<span class="sd">            session&#39;s settings.</span>
+<span class="sd">        :rtype: requests.PreparedRequest</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">&quot;_t.UriType&quot;</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">)</span>
+
+        <span class="n">cookies</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">cookies</span> <span class="ow">or</span> <span class="p">{}</span>
+
+        <span class="c1"># Bootstrap CookieJar.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cookies</span><span class="p">,</span> <span class="n">cookielib</span><span class="o">.</span><span class="n">CookieJar</span><span class="p">):</span>
+            <span class="n">cookies</span> <span class="o">=</span> <span class="n">cookiejar_from_dict</span><span class="p">(</span><span class="n">cookies</span><span class="p">)</span>
+
+        <span class="c1"># Merge with session cookies</span>
+        <span class="n">merged_cookies</span> <span class="o">=</span> <span class="n">merge_cookies</span><span class="p">(</span>
+            <span class="n">merge_cookies</span><span class="p">(</span><span class="n">RequestsCookieJar</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">cookies</span><span class="p">),</span> <span class="n">cookies</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Set environment&#39;s basic authentication if not explicitly set.</span>
+        <span class="n">auth</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">auth</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trust_env</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">auth</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">:</span>
+            <span class="n">auth</span> <span class="o">=</span> <span class="n">get_netrc_auth</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+        <span class="n">p</span> <span class="o">=</span> <span class="n">PreparedRequest</span><span class="p">()</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span>
+            <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
+            <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+            <span class="n">files</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">files</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">merge_setting</span><span class="p">(</span>
+                <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">dict_class</span><span class="o">=</span><span class="n">CaseInsensitiveDict</span>
+            <span class="p">),</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">merge_setting</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">),</span>
+            <span class="n">auth</span><span class="o">=</span><span class="n">merge_setting</span><span class="p">(</span><span class="n">auth</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">),</span>
+            <span class="n">cookies</span><span class="o">=</span><span class="n">merged_cookies</span><span class="p">,</span>
+            <span class="n">hooks</span><span class="o">=</span><span class="n">merge_hooks</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">hooks</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hooks</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">p</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">request</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">url</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">UriType</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">ParamsType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">data</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">DataType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">headers</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">HeadersType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">cookies</span><span class="p">:</span> <span class="n">RequestsCookieJar</span> <span class="o">|</span> <span class="n">CookieJar</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">files</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">FilesType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">auth</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">AuthType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">TimeoutType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">allow_redirects</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">proxies</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">hooks</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">HooksInputType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">stream</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">verify</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">VerifyType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">cert</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">CertType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">json</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">JsonType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructs a :class:`Request &lt;Request&gt;`, prepares it and sends it.</span>
+<span class="sd">        Returns :class:`Response &lt;Response&gt;` object.</span>
+
+<span class="sd">        :param method: method for the new :class:`Request` object.</span>
+<span class="sd">        :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">        :param params: (optional) Dictionary or bytes to be sent in the query</span>
+<span class="sd">            string for the :class:`Request`.</span>
+<span class="sd">        :param data: (optional) Dictionary, list of tuples, bytes, or file-like</span>
+<span class="sd">            object to send in the body of the :class:`Request`.</span>
+<span class="sd">        :param json: (optional) json to send in the body of the</span>
+<span class="sd">            :class:`Request`.</span>
+<span class="sd">        :param headers: (optional) Dictionary of HTTP Headers to send with the</span>
+<span class="sd">            :class:`Request`.</span>
+<span class="sd">        :param cookies: (optional) Dict or CookieJar object to send with the</span>
+<span class="sd">            :class:`Request`.</span>
+<span class="sd">        :param files: (optional) Dictionary of ``&#39;filename&#39;: file-like-objects``</span>
+<span class="sd">            for multipart encoding upload.</span>
+<span class="sd">        :param auth: (optional) Auth tuple or callable to enable</span>
+<span class="sd">            Basic/Digest/Custom HTTP Auth.</span>
+<span class="sd">        :param timeout: (optional) How many seconds to wait for the server to send</span>
+<span class="sd">            data before giving up, as a float, or a :ref:`(connect timeout,</span>
+<span class="sd">            read timeout) &lt;timeouts&gt;` tuple.</span>
+<span class="sd">        :type timeout: float or tuple</span>
+<span class="sd">        :param allow_redirects: (optional) Set to True by default.</span>
+<span class="sd">        :type allow_redirects: bool</span>
+<span class="sd">        :param proxies: (optional) Dictionary mapping protocol or protocol and</span>
+<span class="sd">            hostname to the URL of the proxy.</span>
+<span class="sd">        :param hooks: (optional) Dictionary mapping hook name to one event or</span>
+<span class="sd">            list of events, event must be callable.</span>
+<span class="sd">        :param stream: (optional) whether to immediately download the response</span>
+<span class="sd">            content. Defaults to ``False``.</span>
+<span class="sd">        :param verify: (optional) Either a boolean, in which case it controls whether we verify</span>
+<span class="sd">            the server&#39;s TLS certificate, or a string, in which case it must be a path</span>
+<span class="sd">            to a CA bundle to use. Defaults to ``True``. When set to</span>
+<span class="sd">            ``False``, requests will accept any TLS certificate presented by</span>
+<span class="sd">            the server, and will ignore hostname mismatches and/or expired</span>
+<span class="sd">            certificates, which will make your application vulnerable to</span>
+<span class="sd">            man-in-the-middle (MitM) attacks. Setting verify to ``False``</span>
+<span class="sd">            may be useful during local development or testing.</span>
+<span class="sd">        :param cert: (optional) if String, path to ssl client cert file (.pem).</span>
+<span class="sd">            If Tuple, (&#39;cert&#39;, &#39;key&#39;) pair.</span>
+<span class="sd">        :rtype: requests.Response</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Create the Request.</span>
+        <span class="n">req</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span>
+            <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
+            <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+            <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span> <span class="ow">or</span> <span class="p">{},</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span> <span class="ow">or</span> <span class="p">{},</span>
+            <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">,</span>
+            <span class="n">cookies</span><span class="o">=</span><span class="n">cookies</span><span class="p">,</span>
+            <span class="n">hooks</span><span class="o">=</span><span class="n">hooks</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">prep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepare_request</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">_is_prepared</span><span class="p">(</span><span class="n">prep</span><span class="p">)</span>
+
+        <span class="n">proxies</span> <span class="o">=</span> <span class="n">proxies</span> <span class="ow">or</span> <span class="p">{}</span>
+
+        <span class="n">settings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge_environment_settings</span><span class="p">(</span>
+            <span class="n">prep</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">proxies</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">verify</span><span class="p">,</span> <span class="n">cert</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Send the request.</span>
+        <span class="n">send_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="n">timeout</span><span class="p">,</span>
+            <span class="s2">&quot;allow_redirects&quot;</span><span class="p">:</span> <span class="n">allow_redirects</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">send_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">prep</span><span class="p">,</span> <span class="o">**</span><span class="n">send_kwargs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">resp</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">url</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">UriType</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">ParamsType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Unpack</span><span class="p">[</span><span class="n">_t</span><span class="o">.</span><span class="n">GetKwargs</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a GET request. Returns :class:`Response` object.</span>
+
+<span class="sd">        :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">        :param params: (optional) Dictionary, list of tuples or bytes to send</span>
+<span class="sd">        in the query string for the :class:`Request`.</span>
+<span class="sd">        :param \*\*kwargs: Optional arguments that ``request`` takes.</span>
+<span class="sd">        :rtype: requests.Response</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;allow_redirects&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">UriType</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Unpack</span><span class="p">[</span><span class="n">_t</span><span class="o">.</span><span class="n">RequestKwargs</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a OPTIONS request. Returns :class:`Response` object.</span>
+
+<span class="sd">        :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">        :param \*\*kwargs: Optional arguments that ``request`` takes.</span>
+<span class="sd">        :rtype: requests.Response</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;allow_redirects&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;OPTIONS&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">head</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">UriType</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Unpack</span><span class="p">[</span><span class="n">_t</span><span class="o">.</span><span class="n">RequestKwargs</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a HEAD request. Returns :class:`Response` object.</span>
+
+<span class="sd">        :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">        :param \*\*kwargs: Optional arguments that ``request`` takes.</span>
+<span class="sd">        :rtype: requests.Response</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;allow_redirects&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;HEAD&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">url</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">UriType</span><span class="p">,</span>
+        <span class="n">data</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">DataType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">json</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">JsonType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Unpack</span><span class="p">[</span><span class="n">_t</span><span class="o">.</span><span class="n">PostKwargs</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a POST request. Returns :class:`Response` object.</span>
+
+<span class="sd">        :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">        :param data: (optional) Dictionary, list of tuples, bytes, or file-like</span>
+<span class="sd">            object to send in the body of the :class:`Request`.</span>
+<span class="sd">        :param json: (optional) json to send in the body of the :class:`Request`.</span>
+<span class="sd">        :param \*\*kwargs: Optional arguments that ``request`` takes.</span>
+<span class="sd">        :rtype: requests.Response</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">put</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">UriType</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">DataType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Unpack</span><span class="p">[</span><span class="n">_t</span><span class="o">.</span><span class="n">DataKwargs</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a PUT request. Returns :class:`Response` object.</span>
+
+<span class="sd">        :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">        :param data: (optional) Dictionary, list of tuples, bytes, or file-like</span>
+<span class="sd">            object to send in the body of the :class:`Request`.</span>
+<span class="sd">        :param \*\*kwargs: Optional arguments that ``request`` takes.</span>
+<span class="sd">        :rtype: requests.Response</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;PUT&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">patch</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">UriType</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">DataType</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Unpack</span><span class="p">[</span><span class="n">_t</span><span class="o">.</span><span class="n">DataKwargs</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a PATCH request. Returns :class:`Response` object.</span>
+
+<span class="sd">        :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">        :param data: (optional) Dictionary, list of tuples, bytes, or file-like</span>
+<span class="sd">            object to send in the body of the :class:`Request`.</span>
+<span class="sd">        :param \*\*kwargs: Optional arguments that ``request`` takes.</span>
+<span class="sd">        :rtype: requests.Response</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;PATCH&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">UriType</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Unpack</span><span class="p">[</span><span class="n">_t</span><span class="o">.</span><span class="n">RequestKwargs</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a DELETE request. Returns :class:`Response` object.</span>
+
+<span class="sd">        :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">        :param \*\*kwargs: Optional arguments that ``request`` takes.</span>
+<span class="sd">        :rtype: requests.Response</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;DELETE&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">PreparedRequest</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Send a given PreparedRequest.</span>
+
+<span class="sd">        :rtype: requests.Response</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Set defaults that the hooks can utilize to ensure they always have</span>
+        <span class="c1"># the correct parameters to reproduce the previous request.</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;stream&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream</span><span class="p">)</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;verify&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verify</span><span class="p">)</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;cert&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;proxies&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;proxies&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">resolve_proxies</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">trust_env</span><span class="p">)</span>
+
+        <span class="c1"># It&#39;s possible that users might accidentally send a Request object.</span>
+        <span class="c1"># Guard against that specific failure case.</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">Request</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You can only send PreparedRequests.&quot;</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">_is_prepared</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+        <span class="c1"># Set up variables needed for resolve_redirects and dispatching of hooks</span>
+        <span class="n">allow_redirects</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;allow_redirects&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">stream</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stream&quot;</span><span class="p">)</span>
+        <span class="n">hooks</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">hooks</span>
+
+        <span class="c1"># Get the appropriate adapter to use</span>
+        <span class="n">adapter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_adapter</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+
+        <span class="c1"># Start time (approximately) of the request</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span>
+
+        <span class="c1"># Send the request</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Total elapsed time of the request (approximately)</span>
+        <span class="n">elapsed</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">elapsed</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">elapsed</span><span class="p">)</span>
+
+        <span class="c1"># Response manipulation hooks</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">dispatch_hook</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">,</span> <span class="n">hooks</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Persist cookies</span>
+        <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">history</span><span class="p">:</span>
+            <span class="c1"># If the hooks create history then we want those cookies too</span>
+            <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">history</span><span class="p">:</span>
+                <span class="n">extract_cookies_to_jar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cookies</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">raw</span><span class="p">)</span>
+
+        <span class="n">extract_cookies_to_jar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cookies</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">raw</span><span class="p">)</span>
+
+        <span class="c1"># Resolve redirects if allowed.</span>
+        <span class="k">if</span> <span class="n">allow_redirects</span><span class="p">:</span>
+            <span class="c1"># Redirect resolving generator.</span>
+            <span class="n">gen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolve_redirects</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">history</span> <span class="o">=</span> <span class="p">[</span><span class="n">resp</span> <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">gen</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">history</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Shuffle things around if there&#39;s history.</span>
+        <span class="k">if</span> <span class="n">history</span><span class="p">:</span>
+            <span class="c1"># Insert the first (original) request at the start</span>
+            <span class="n">history</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+            <span class="c1"># Get the last request made</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">r</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="n">history</span>
+
+        <span class="c1"># If redirects aren&#39;t being followed, store the response on the Request for Response.next().</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">allow_redirects</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">r</span><span class="o">.</span><span class="n">_next</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>  <span class="c1"># type: ignore[assignment]  # yield_requests=True returns PreparedRequest</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">resolve_redirects</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">yield_requests</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">stream</span><span class="p">:</span>
+            <span class="n">r</span><span class="o">.</span><span class="n">content</span>
+
+        <span class="k">return</span> <span class="n">r</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">merge_environment_settings</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">proxies</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">stream</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">verify</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">VerifyType</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">cert</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">CertType</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check the environment and merge it with some settings.</span>
+
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Gather clues from the surrounding environment.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trust_env</span><span class="p">:</span>
+            <span class="c1"># Set environment&#39;s proxies.</span>
+            <span class="n">no_proxy</span> <span class="o">=</span> <span class="n">proxies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;no_proxy&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">proxies</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+            <span class="n">env_proxies</span> <span class="o">=</span> <span class="n">get_environ_proxies</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">no_proxy</span><span class="o">=</span><span class="n">no_proxy</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">proxies</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">env_proxies</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">proxies</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+            <span class="c1"># Look for requests environment configuration</span>
+            <span class="c1"># and be compatible with cURL.</span>
+            <span class="k">if</span> <span class="n">verify</span> <span class="ow">is</span> <span class="kc">True</span> <span class="ow">or</span> <span class="n">verify</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">verify</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;REQUESTS_CA_BUNDLE&quot;</span><span class="p">)</span>
+                    <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;CURL_CA_BUNDLE&quot;</span><span class="p">)</span>
+                    <span class="ow">or</span> <span class="n">verify</span>
+                <span class="p">)</span>
+
+        <span class="c1"># Merge all the kwargs.</span>
+        <span class="n">proxies</span> <span class="o">=</span> <span class="n">merge_setting</span><span class="p">(</span><span class="n">proxies</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxies</span><span class="p">)</span>
+        <span class="n">stream</span> <span class="o">=</span> <span class="n">merge_setting</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream</span><span class="p">)</span>
+        <span class="n">verify</span> <span class="o">=</span> <span class="n">merge_setting</span><span class="p">(</span><span class="n">verify</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verify</span><span class="p">)</span>
+        <span class="n">cert</span> <span class="o">=</span> <span class="n">merge_setting</span><span class="p">(</span><span class="n">cert</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cert</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;proxies&quot;</span><span class="p">:</span> <span class="n">proxies</span><span class="p">,</span> <span class="s2">&quot;stream&quot;</span><span class="p">:</span> <span class="n">stream</span><span class="p">,</span> <span class="s2">&quot;verify&quot;</span><span class="p">:</span> <span class="n">verify</span><span class="p">,</span> <span class="s2">&quot;cert&quot;</span><span class="p">:</span> <span class="n">cert</span><span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_adapter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BaseAdapter</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the appropriate connection adapter for the given URL.</span>
+
+<span class="sd">        :rtype: requests.adapters.BaseAdapter</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">adapter</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">prefix</span><span class="o">.</span><span class="n">lower</span><span class="p">()):</span>
+                <span class="k">return</span> <span class="n">adapter</span>
+
+        <span class="c1"># Nothing matches :-/</span>
+        <span class="k">raise</span> <span class="n">InvalidSchema</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No connection adapters were found for </span><span class="si">{</span><span class="n">url</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Closes all adapters and as such the session&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapters</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">v</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">mount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">adapter</span><span class="p">:</span> <span class="n">BaseAdapter</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Registers a connection adapter to a prefix.</span>
+
+<span class="sd">        Adapters are sorted in descending order by prefix length.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adapters</span><span class="p">[</span><span class="n">prefix</span><span class="p">]</span> <span class="o">=</span> <span class="n">adapter</span>
+        <span class="n">keys_to_move</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapters</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">)]</span>
+
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys_to_move</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">adapters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapters</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="p">{</span><span class="n">attr</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__attrs__</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">state</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">attr</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">state</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="session">
+<a class="viewcode-back" href="../../autoapi/earthkit_data_meteoswiss_opendata/api/index.html#earthkit_data_meteoswiss_opendata.api.session">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">session</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Session</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a :class:`Session` for context-management.</span>
+
+<span class="sd">    .. deprecated:: 1.0.0</span>
+
+<span class="sd">        This method has been deprecated since version 1.0.0 and is only kept for</span>
+<span class="sd">        backwards compatibility. New code should use :class:`~requests.sessions.Session`</span>
+<span class="sd">        to create a session. This may be removed at a future date.</span>
+
+<span class="sd">    :rtype: Session</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Session</span><span class="p">()</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item"><!-- This will display the version of the docs -->
+earthkit-data-meteoswiss-opendata, version: dev-46ef247</div>
+      
+        <div class="footer-item"><p class="last-updated">
+  Last updated on 27.07.2026.
+  <br/>
+</p></div>
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, MeteoSwiss.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

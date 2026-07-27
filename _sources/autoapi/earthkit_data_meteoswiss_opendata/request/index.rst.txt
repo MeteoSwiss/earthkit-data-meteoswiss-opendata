@@ -1,9 +1,11 @@
-earthkit_data_meteoswiss_opendata
-=================================
+earthkit_data_meteoswiss_opendata.request
+=========================================
 
-.. py:module:: earthkit_data_meteoswiss_opendata
+.. py:module:: earthkit_data_meteoswiss_opendata.request
 
 .. autoapi-nested-parse::
+
+   Request validation and STAC query creation.
 
    Copyright (c) 2026 MeteoSwiss, contributors listed in AUTHORS
 
@@ -13,23 +15,13 @@ earthkit_data_meteoswiss_opendata
 
 
 
-Submodules
-----------
-
-.. toctree::
-   :maxdepth: 1
-
-   /autoapi/earthkit_data_meteoswiss_opendata/api/index
-   /autoapi/earthkit_data_meteoswiss_opendata/request/index
-   /autoapi/earthkit_data_meteoswiss_opendata/source/index
-
-
 Attributes
 ----------
 
 .. autoapisummary::
 
-   earthkit_data_meteoswiss_opendata.API_URL
+   earthkit_data_meteoswiss_opendata.request.logger
+   earthkit_data_meteoswiss_opendata.request.DurationAdapter
 
 
 Classes
@@ -37,33 +29,16 @@ Classes
 
 .. autoapisummary::
 
-   earthkit_data_meteoswiss_opendata.Collection
-   earthkit_data_meteoswiss_opendata.Request
-   earthkit_data_meteoswiss_opendata.MeteoSwissOpenDataSource
+   earthkit_data_meteoswiss_opendata.request.Collection
+   earthkit_data_meteoswiss_opendata.request.Request
 
 
-Functions
----------
+Module Contents
+---------------
 
-.. autoapisummary::
+.. py:data:: logger
 
-   earthkit_data_meteoswiss_opendata.get_asset_urls
-
-
-Package Contents
-----------------
-
-.. py:data:: API_URL
-   :value: 'https://data.geo.admin.ch/api/stac/v1'
-
-
-.. py:function:: get_asset_urls(request: earthkit_data_meteoswiss_opendata.request.Request) -> list[str]
-
-   Return assets matching a MeteoSwiss request.
-
-   For requests with several lead times, only complete
-   forecast runs are returned.
-
+.. py:data:: DurationAdapter
 
 .. py:class:: Collection
 
@@ -157,23 +132,6 @@ Package Contents
    .. py:method:: dump() -> dict[str, Any]
 
       Backward-compatible alias for the old API.
-
-
-
-.. py:class:: MeteoSwissOpenDataSource(*, collection: earthkit_data_meteoswiss_opendata.request.Collection | str, variable: str, perturbed: bool, ref_time: str | datetime.datetime, lead_time: str | datetime.timedelta | list[str | datetime.timedelta])
-
-   Bases: :py:obj:`earthkit.data.sources.Source`
-
-
-   Earthkit source for MeteoSwiss Open Data.
-
-
-   .. py:attribute:: request
-
-
-   .. py:method:: mutate() -> earthkit.data.sources.Source
-
-      Convert the request into Earthkit's URL source.
 
 
 

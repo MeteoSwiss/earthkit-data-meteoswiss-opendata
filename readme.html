@@ -32,6 +32,7 @@
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=8e5abdd0" />
   
   <!-- So that users can add custom icons -->
   <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -39,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=4be72ee2"></script>
+    <script src="_static/documentation_options.js?v=07915626"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'readme';</script>
@@ -57,7 +58,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="dev" />
-    <meta name="docbuild:last-update" content="30.06.2026"/>
+    <meta name="docbuild:last-update" content="27.07.2026"/>
   </head>
   
   
@@ -382,7 +383,107 @@
 </a>
 <section id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h1>
-<p>Earthkit-data plugin for accessing NWP MeteoSwiss Open Data.</p>
+<p><code class="docutils literal notranslate"><span class="pre">earthkit-data-meteoswiss-opendata</span></code> is an <code class="docutils literal notranslate"><span class="pre">earthkit-data</span></code> source plugin
+for accessing MeteoSwiss numerical weather prediction data through the
+MeteoSwiss Open Data STAC API.</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>Install the released package with pip:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>earthkit-data-meteoswiss-opendata
+</pre></div>
+</div>
+<p>With Poetry:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry<span class="w"> </span>add<span class="w"> </span>earthkit-data-meteoswiss-opendata
+</pre></div>
+</div>
+<p>Installing the package also installs <code class="docutils literal notranslate"><span class="pre">earthkit-data</span></code> and automatically registers the <code class="docutils literal notranslate"><span class="pre">meteoswiss-opendata</span></code> source plugin. No additional plugin configuration is required.</p>
+</section>
+<section id="using-the-library">
+<h2>Using the Library<a class="headerlink" href="#using-the-library" title="Link to this heading">#</a></h2>
+<p>Load the latest deterministic ICON-CH2-EPS forecast +0h, +1h &amp; +2h for total
+precipitation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">earthkit.data</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ekd</span>
+
+<span class="n">forecast</span> <span class="o">=</span> <span class="n">ekd</span><span class="o">.</span><span class="n">from_source</span><span class="p">(</span>
+    <span class="s2">&quot;meteoswiss-opendata&quot;</span><span class="p">,</span>
+    <span class="n">collection</span><span class="o">=</span><span class="s2">&quot;ogd-forecasting-icon-ch2&quot;</span><span class="p">,</span>
+    <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;TOT_PREC&quot;</span><span class="p">,</span>
+    <span class="n">perturbed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">ref_time</span><span class="o">=</span><span class="s2">&quot;latest&quot;</span><span class="p">,</span>
+    <span class="n">lead_time</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s2">&quot;grib&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For <code class="docutils literal notranslate"><span class="pre">ref_time=&quot;latest&quot;</span></code>, the plugin selects the newest forecast run that
+contains all requested lead times.
+An exact reference time can be provided as a timezone-aware
+<code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">forecast</span> <span class="o">=</span> <span class="n">ekd</span><span class="o">.</span><span class="n">from_source</span><span class="p">(</span>
+    <span class="s2">&quot;meteoswiss-opendata&quot;</span><span class="p">,</span>
+    <span class="n">collection</span><span class="o">=</span><span class="s2">&quot;ogd-forecasting-icon-ch2&quot;</span><span class="p">,</span>
+    <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;TOT_PREC&quot;</span><span class="p">,</span>
+    <span class="n">perturbed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">ref_time</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span>
+        <span class="mi">2026</span><span class="p">,</span>
+        <span class="mi">7</span><span class="p">,</span>
+        <span class="mi">20</span><span class="p">,</span>
+        <span class="mi">6</span><span class="p">,</span>
+        <span class="n">tzinfo</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">lead_time</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>ISO 8601 strings such as <code class="docutils literal notranslate"><span class="pre">&quot;2026-07-20T06:00:00Z&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;PT1H&quot;</span></code> are also
+accepted.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">collection</span></code></dt><dd><p>MeteoSwiss Open Data collection, for example
+<code class="docutils literal notranslate"><span class="pre">ogd-forecasting-icon-ch2</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">variable</span></code></dt><dd><p>Forecast variable name, for example <code class="docutils literal notranslate"><span class="pre">TOT_PREC</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">perturbed</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">False</span></code> for deterministic data or <code class="docutils literal notranslate"><span class="pre">True</span></code> for perturbed data.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ref_time</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;latest&quot;</span></code>, a timezone-aware <code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code>, an ISO 8601
+datetime string, or an ISO 8601 datetime interval.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">lead_time</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">datetime.timedelta</span></code>, an ISO 8601 duration string, or a list of
+either. Examples include <code class="docutils literal notranslate"><span class="pre">datetime.timedelta(hours=1)</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;PT1H&quot;</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">[&quot;PT0H&quot;,</span> <span class="pre">&quot;PT1H&quot;,</span> <span class="pre">&quot;PT2H&quot;]</span></code>.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="related-links">
+<h2>Related Links<a class="headerlink" href="#related-links" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://earthkit-data.readthedocs.io/en/latest/">earthkit-data documentation</a></p></li>
+<li><p><a class="reference external" href="https://earthkit-data.readthedocs.io/en/latest/concepts/plugins/sources_plugin.html">Earthkit source plugin documentation</a></p></li>
+<li><p><a class="reference external" href="https://opendatadocs.meteoswiss.ch/">MeteoSwiss Open Data documentation</a></p></li>
+<li><p><a class="reference external" href="https://opendatadocs.meteoswiss.ch/e-forecast-data">MeteoSwiss numerical weather prediction data</a></p></li>
+<li><p><a class="reference external" href="https://github.com/MeteoSwiss/opendata-nwp-demos">MeteoSwiss Open Data NWP example notebooks</a></p></li>
+</ul>
+<section id="collection-browser">
+<h3>Collection Browser<a class="headerlink" href="#collection-browser" title="Link to this heading">#</a></h3>
+<p>The available collection assets can be inspected in the STAC Browser:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://data.geo.admin.ch/browser/index.html#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1">ICON-CH1-EPS collection</a></p></li>
+<li><p><a class="reference external" href="https://data.geo.admin.ch/browser/index.html#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2">ICON-CH2-EPS collection</a></p></li>
+<li><p><a class="reference external" href="https://data.geo.admin.ch/browser/index.html#/collections/ch.meteoschweiz.ogd-analysis-kenda-ch1">KENDA-CH1 collection</a></p></li>
+</ul>
+</section>
+</section>
 <section id="development-setup-with-poetry">
 <h2>Development Setup with Poetry<a class="headerlink" href="#development-setup-with-poetry" title="Link to this heading">#</a></h2>
 <section id="building-the-project">
@@ -394,7 +495,12 @@
 </section>
 <section id="run-tests">
 <h3>Run Tests<a class="headerlink" href="#run-tests" title="Link to this heading">#</a></h3>
+<p>Run the offline unit tests:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>pytest
+</pre></div>
+</div>
+<p>Run the optional live integration test:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nv">RUN_INTEGRATION</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-m<span class="w"> </span>integration
 </pre></div>
 </div>
 </section>
@@ -402,7 +508,8 @@
 <h3>Run Quality Tools<a class="headerlink" href="#run-quality-tools" title="Link to this heading">#</a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>pylint<span class="w"> </span>earthkit_data_meteoswiss_opendata
 <span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>mypy<span class="w"> </span>earthkit_data_meteoswiss_opendata
-<span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>format
+<span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>--check
+<span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check
 </pre></div>
 </div>
 </section>
@@ -411,35 +518,27 @@
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>sphinx-build<span class="w"> </span>doc<span class="w"> </span>doc/_build
 </pre></div>
 </div>
-<p>Then open the index.html file generated in <em>earthkit-data-meteoswiss-opendata/doc/_build/</em>.</p>
+<p>Then open <code class="docutils literal notranslate"><span class="pre">doc/_build/index.html</span></code>.</p>
 </section>
 <section id="build-wheels">
-<h3>Build wheels<a class="headerlink" href="#build-wheels" title="Link to this heading">#</a></h3>
+<h3>Build Wheels<a class="headerlink" href="#build-wheels" title="Link to this heading">#</a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry<span class="w"> </span>build
 </pre></div>
 </div>
 </section>
 </section>
-<section id="using-the-library">
-<h2>Using the Library<a class="headerlink" href="#using-the-library" title="Link to this heading">#</a></h2>
-<p>To install earthkit-data-meteoswiss-opendata in your project, run this command in your terminal:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry<span class="w"> </span>add<span class="w"> </span>earthkit-data-meteoswiss-opendata
-</pre></div>
-</div>
-<p>You can then use the library in your project through</p>
-<blockquote>
-<div><p>import earthkit_data_meteoswiss_opendata</p>
-</div></blockquote>
-</section>
 <section id="release-the-project">
 <h2>Release the Project<a class="headerlink" href="#release-the-project" title="Link to this heading">#</a></h2>
-<p>The project follows the <strong>GitOps concept</strong>: releases are triggered whenever a Git TAG is created.</p>
-<p>The TAG must follow the <a class="reference external" href="https://semver.org/">semantic version</a> format and <a class="reference external" href="https://peps.python.org/pep-0440/">PEP 440</a> , otherwise the release task will fail.</p>
-<p>Follow these steps to create a new release:</p>
+<p>The project follows the <strong>GitOps concept</strong>: releases are triggered whenever a
+Git tag is created.</p>
+<p>The tag must follow <a class="reference external" href="https://semver.org/">Semantic Versioning</a> and
+<a class="reference external" href="https://peps.python.org/pep-0440/">PEP 440</a>. Otherwise, the release task
+will fail.</p>
+<p>Follow these steps to create a release:</p>
 <ul class="simple">
-<li><p>Adapt CHANGELOG.rst with release information</p></li>
-<li><p>Adapt <code class="docutils literal notranslate"><span class="pre">doc/_static/switcher_config.json</span></code> adding the new documentation URL for the release</p></li>
-<li><p>Create a new Release in the Github project</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> with the release information.</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">doc/_static/switcher_config.json</span></code> with the new documentation URL.</p></li>
+<li><p>Create a new release and matching tag in the GitHub project.</p></li>
 </ul>
 </section>
 </section>
@@ -491,15 +590,23 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-library">Using the Library</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-links">Related Links</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collection-browser">Collection Browser</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-setup-with-poetry">Development Setup with Poetry</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-project">Building the Project</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-tests">Run Tests</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-quality-tools">Run Quality Tools</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-documentation">Generate Documentation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-wheels">Build wheels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-wheels">Build Wheels</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-library">Using the Library</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#release-the-project">Release the Project</a></li>
 </ul>
   </nav></div>
@@ -526,10 +633,10 @@
     <div class="footer-items__start">
       
         <div class="footer-item"><!-- This will display the version of the docs -->
-earthkit-data-meteoswiss-opendata, version: dev-944ee28</div>
+earthkit-data-meteoswiss-opendata, version: dev-46ef247</div>
       
         <div class="footer-item"><p class="last-updated">
-  Last updated on 30.06.2026.
+  Last updated on 27.07.2026.
   <br/>
 </p></div>
       
