@@ -20,16 +20,127 @@
 Getting Started
 ===============
 
-Earthkit-data plugin for accessing NWP MeteoSwiss Open Data.
+``earthkit-data-meteoswiss-opendata`` is an ``earthkit-data`` source plugin
+for accessing MeteoSwiss numerical weather prediction data through the
+MeteoSwiss Open Data STAC API.
+
+Installation
+------------
+
+Install the released package with pip:
+
+.. code-block:: console
+
+    $ pip install earthkit-data-meteoswiss-opendata
+
+With Poetry:
+
+.. code-block:: console
+
+    $ poetry add earthkit-data-meteoswiss-opendata
+
+Installing the package also installs ``earthkit-data`` and automatically registers the ``meteoswiss-opendata`` source plugin. No additional plugin configuration is required.
+
+Using the Library
+-----------------
+
+Load the latest deterministic ICON-CH2-EPS forecast +0h, +1h & +2h for total
+precipitation:
+
+.. code-block:: python
+
+    import datetime as dt
+
+    import earthkit.data as ekd
+
+    forecast = ekd.from_source(
+        "meteoswiss-opendata",
+        collection="ogd-forecasting-icon-ch2",
+        variable="TOT_PREC",
+        perturbed=False,
+        ref_time="latest",
+        lead_time=[
+            dt.timedelta(hours=0),
+            dt.timedelta(hours=1),
+            dt.timedelta(hours=2),
+        ],
+    )
+
+    dataset = forecast.to_xarray(profile="grib")
+    print(dataset)
 
 
+For ``ref_time="latest"``, the plugin selects the newest forecast run that
+contains all requested lead times.
+An exact reference time can be provided as a timezone-aware
+``datetime.datetime``:
 
+.. code-block:: python
+
+    forecast = ekd.from_source(
+        "meteoswiss-opendata",
+        collection="ogd-forecasting-icon-ch2",
+        variable="TOT_PREC",
+        perturbed=False,
+        ref_time=dt.datetime(
+            2026,
+            7,
+            20,
+            6,
+            tzinfo=dt.timezone.utc,
+        ),
+        lead_time=dt.timedelta(hours=1),
+    )
+
+ISO 8601 strings such as ``"2026-07-20T06:00:00Z"`` and ``"PT1H"`` are also
+accepted.
+
+Parameters
+''''''''''
+
+``collection``
+    MeteoSwiss Open Data collection, for example
+    ``ogd-forecasting-icon-ch2``.
+
+``variable``
+    Forecast variable name, for example ``TOT_PREC``.
+
+``perturbed``
+    ``False`` for deterministic data or ``True`` for perturbed data.
+
+``ref_time``
+    ``"latest"``, a timezone-aware ``datetime.datetime``, an ISO 8601
+    datetime string, or an ISO 8601 datetime interval.
+
+``lead_time``
+    A ``datetime.timedelta``, an ISO 8601 duration string, or a list of
+    either. Examples include ``datetime.timedelta(hours=1)``, ``"PT1H"``,
+    and ``["PT0H", "PT1H", "PT2H"]``.
+
+Related Links
+-------------
+
+* `earthkit-data documentation <https://earthkit-data.readthedocs.io/en/latest/>`__
+* `Earthkit source plugin documentation <https://earthkit-data.readthedocs.io/en/latest/concepts/plugins/sources_plugin.html>`__
+* `MeteoSwiss Open Data documentation <https://opendatadocs.meteoswiss.ch/>`__
+* `MeteoSwiss numerical weather prediction data <https://opendatadocs.meteoswiss.ch/e-forecast-data>`__
+* `MeteoSwiss Open Data NWP example notebooks <https://github.com/MeteoSwiss/opendata-nwp-demos>`__
+
+Collection Browser
+''''''''''''''''''
+
+The available collection assets can be inspected in the STAC Browser:
+
+* `ICON-CH1-EPS collection <https://data.geo.admin.ch/browser/index.html#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1>`__
+* `ICON-CH2-EPS collection <https://data.geo.admin.ch/browser/index.html#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2>`__
+* `KENDA-CH1 collection <https://data.geo.admin.ch/browser/index.html#/collections/ch.meteoschweiz.ogd-analysis-kenda-ch1>`__
 
 Development Setup with Poetry
 -----------------------------
 
 Building the Project
 ''''''''''''''''''''
+
 .. code-block:: console
 
     $ cd earthkit-data-meteoswiss-opendata
@@ -38,9 +149,17 @@ Building the Project
 Run Tests
 '''''''''
 
+Run the offline unit tests:
+
 .. code-block:: console
 
     $ poetry run pytest
+
+Run the optional live integration test:
+
+.. code-block:: console
+
+    $ RUN_INTEGRATION=1 poetry run pytest -m integration
 
 Run Quality Tools
 '''''''''''''''''
@@ -49,7 +168,8 @@ Run Quality Tools
 
     $ poetry run pylint earthkit_data_meteoswiss_opendata
     $ poetry run mypy earthkit_data_meteoswiss_opendata
-    $ poetry run ruff format
+    $ poetry run ruff format --check
+    $ poetry run ruff check
 
 Generate Documentation
 ''''''''''''''''''''''
@@ -58,37 +178,27 @@ Generate Documentation
 
     $ poetry run sphinx-build doc doc/_build
 
-Then open the index.html file generated in *earthkit-data-meteoswiss-opendata/doc/_build/*.
+Then open ``doc/_build/index.html``.
 
-Build wheels
+Build Wheels
 ''''''''''''
 
 .. code-block:: console
 
     $ poetry build
 
-Using the Library
------------------
-
-To install earthkit-data-meteoswiss-opendata in your project, run this command in your terminal:
-
-.. code-block:: console
-
-    $ poetry add earthkit-data-meteoswiss-opendata
-
-You can then use the library in your project through
-
-    import earthkit_data_meteoswiss_opendata
-
 Release the Project
 -------------------
 
-The project follows the **GitOps concept**: releases are triggered whenever a Git TAG is created.
+The project follows the **GitOps concept**: releases are triggered whenever a
+Git tag is created.
 
-The TAG must follow the `semantic version <https://semver.org/>`__ format and `PEP 440 <https://peps.python.org/pep-0440/>`__ , otherwise the release task will fail.
+The tag must follow `Semantic Versioning <https://semver.org/>`__ and
+`PEP 440 <https://peps.python.org/pep-0440/>`__. Otherwise, the release task
+will fail.
 
-Follow these steps to create a new release:
+Follow these steps to create a release:
 
-* Adapt CHANGELOG.rst with release information
-* Adapt ``doc/_static/switcher_config.json`` adding the new documentation URL for the release
-* Create a new Release in the Github project
+* Update ``CHANGELOG.rst`` with the release information.
+* Update ``doc/_static/switcher_config.json`` with the new documentation URL.
+* Create a new release and matching tag in the GitHub project.
