@@ -7,9 +7,6 @@
 .. image:: https://img.shields.io/pypi/l/earthkit-data-meteoswiss-opendata.svg
     :target: https://pypi.org/project/earthkit-data-meteoswiss-opendata/
 
-.. image:: https://github.com/MeteoSwiss/earthkit-data-meteoswiss-opendata/actions/workflows/github-code-scanning/codeql/badge.svg
-    :target: https://github.com/MeteoSwiss/earthkit-data-meteoswiss-opendata/actions/workflows/github-code-scanning/codeql
-
 .. image:: https://github.com/MeteoSwiss/earthkit-data-meteoswiss-opendata/actions/workflows/CI_test.yaml/badge.svg
     :target: https://github.com/MeteoSwiss/earthkit-data-meteoswiss-opendata/actions/workflows/CI_test.yaml
 
