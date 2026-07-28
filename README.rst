@@ -66,7 +66,7 @@ precipitation:
         ],
     )
 
-    dataset = forecast.to_xarray(profile="grib")
+    dataset = forecast.to_xarray(time_dims=["forecast_reference_time", "step"], squeeze=False)
     print(dataset)
 
 
@@ -137,7 +137,7 @@ Load the horizontal or vertical constants associated with a model collection:
     )
 
 The ``asset`` parameter accepts ``"horizontal"`` or ``"vertical"``. The
-returned data can be handled with the standard Earthkit methods, for example:
+returned data can be handled with the standard Earthkit methods e.g. `to_xarray() <https://earthkit-data.readthedocs.io/en/latest/autoapi/earthkit/data/indexing/xarray/index.html#earthkit.data.indexing.xarray.XarrayMixIn.to_xarray>`__ or `to_target() <https://earthkit-data.readthedocs.io/en/latest/concepts/targets/to_target.html#to_target>`__, for example:
 
 .. code-block:: python
 
