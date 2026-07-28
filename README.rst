@@ -36,7 +36,10 @@ With Poetry:
 
     $ poetry add earthkit-data-meteoswiss-opendata
 
-Installing the package also installs ``earthkit-data`` and automatically registers the ``meteoswiss-opendata`` source plugin. No additional plugin configuration is required.
+Installing the package also installs ``earthkit-data`` and automatically
+registers the ``meteoswiss-opendata`` and
+``meteoswiss-opendata-constants`` source plugins. No additional plugin
+configuration is required.
 
 Using the Library
 -----------------
@@ -114,6 +117,35 @@ Parameters
     either. Examples include ``datetime.timedelta(hours=1)``, ``"PT1H"``,
     and ``["PT0H", "PT1H", "PT2H"]``.
 
+Model Constants
+---------------
+
+Load the horizontal or vertical constants associated with a model collection:
+
+.. code-block:: python
+
+    horizontal = ekd.from_source(
+        "meteoswiss-opendata-constants",
+        collection="ogd-forecasting-icon-ch2",
+        asset="horizontal",
+    )
+
+    vertical = ekd.from_source(
+        "meteoswiss-opendata-constants",
+        collection="ogd-forecasting-icon-ch2",
+        asset="vertical",
+    )
+
+The ``asset`` parameter accepts ``"horizontal"`` or ``"vertical"``. The
+returned data can be handled with the standard Earthkit methods, for example:
+
+.. code-block:: python
+
+    horizontal.to_target(
+        "file",
+        "horizontal_constants_icon-ch2-eps.grib2",
+    )
+
 Related Links
 -------------
 
@@ -121,6 +153,7 @@ Related Links
 * `Earthkit source plugin documentation <https://earthkit-data.readthedocs.io/en/latest/concepts/plugins/sources_plugin.html>`__
 * `MeteoSwiss Open Data documentation <https://opendatadocs.meteoswiss.ch/>`__
 * `MeteoSwiss numerical weather prediction data <https://opendatadocs.meteoswiss.ch/e-forecast-data>`__
+* `MeteoSwiss constant parameters example <https://github.com/MeteoSwiss/opendata-nwp-demos/blob/main/09_constant_parameters.ipynb>`__
 * `MeteoSwiss Open Data NWP example notebooks <https://github.com/MeteoSwiss/opendata-nwp-demos>`__
 
 Collection Browser

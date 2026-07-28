@@ -158,3 +158,52 @@ def test_no_complete_run_raises(
         match="No complete forecast run",
     ):
         api.get_asset_urls(make_request(["PT0H", "PT1H"]))
+
+
+def test_get_collection_asset_url(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    response = MagicMock()
+    response.json.return_value = {
+        "assets": [
+            {
+                "id": "horizontal_constants_icon-ch2-eps.grib2",
+                "href": "https://example.test/horizontal.grib2",
+            }
+        ]
+    }
+
+    get = MagicMock(return_value=response)
+    monkeypatch.setattr(api.session, "get", get)
+
+    result = api.get_collection_asset_url(
+        collection_id=("ch.meteoschweiz.ogd-forecasting-icon-ch2"),
+        asset_id=("horizontal_constants_icon-ch2-eps.grib2"),
+    )
+
+    assert result == "https://example.test/horizontal.grib2"
+    response.raise_for_status.assert_called_once_with()
+
+
+def test_get_collection_asset_url_missing(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    response = MagicMock()
+    response.json.return_value = {
+        "assets": [],
+    }
+
+    monkeypatch.setattr(
+        api.session,
+        "get",
+        MagicMock(return_value=response),
+    )
+
+    with pytest.raises(
+        KeyError,
+        match="Asset .* was not found",
+    ):
+        api.get_collection_asset_url(
+            collection_id=("ch.meteoschweiz.ogd-forecasting-icon-ch2"),
+            asset_id=("horizontal_constants_icon-ch2-eps.grib2"),
+        )
