@@ -17,9 +17,7 @@
 Getting Started
 ===============
 
-``earthkit-data-meteoswiss-opendata`` is an ``earthkit-data`` source plugin
-for accessing MeteoSwiss numerical weather prediction data through the
-MeteoSwiss Open Data STAC API.
+``earthkit-data-meteoswiss-opendata`` provides earthkit-data source plugins for accessing MeteoSwiss numerical weather prediction data through the MeteoSwiss Open Data STAC API.
 
 Installation
 ------------
@@ -137,7 +135,7 @@ Load the horizontal or vertical constants associated with a model collection:
     )
 
 The ``asset`` parameter accepts ``"horizontal"`` or ``"vertical"``. The
-returned data can be handled with the standard Earthkit methods e.g. `to_xarray() <https://earthkit-data.readthedocs.io/en/latest/autoapi/earthkit/data/indexing/xarray/index.html#earthkit.data.indexing.xarray.XarrayMixIn.to_xarray>`__ or `to_target() <https://earthkit-data.readthedocs.io/en/latest/concepts/targets/to_target.html#to_target>`__, for example:
+returned data can be handled with the standard earthkit methods e.g. `to_xarray() <https://earthkit-data.readthedocs.io/en/latest/autoapi/earthkit/data/indexing/xarray/index.html#earthkit.data.indexing.xarray.XarrayMixIn.to_xarray>`__ or `to_target() <https://earthkit-data.readthedocs.io/en/latest/concepts/targets/to_target.html#to_target>`__, for example:
 
 .. code-block:: python
 
@@ -150,7 +148,7 @@ Related Links
 -------------
 
 * `earthkit-data documentation <https://earthkit-data.readthedocs.io/en/latest/>`__
-* `Earthkit source plugin documentation <https://earthkit-data.readthedocs.io/en/latest/concepts/plugins/sources_plugin.html>`__
+* `earthkit source plugin documentation <https://earthkit-data.readthedocs.io/en/latest/concepts/plugins/sources_plugin.html>`__
 * `MeteoSwiss Open Data documentation <https://opendatadocs.meteoswiss.ch/>`__
 * `MeteoSwiss numerical weather prediction data <https://opendatadocs.meteoswiss.ch/e-forecast-data>`__
 * `MeteoSwiss constant parameters example <https://github.com/MeteoSwiss/opendata-nwp-demos/blob/main/09_constant_parameters.ipynb>`__
