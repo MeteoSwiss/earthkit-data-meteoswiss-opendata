@@ -20,6 +20,7 @@ Submodules
    :maxdepth: 1
 
    /autoapi/earthkit_data_meteoswiss_opendata/api/index
+   /autoapi/earthkit_data_meteoswiss_opendata/constants_source/index
    /autoapi/earthkit_data_meteoswiss_opendata/request/index
    /autoapi/earthkit_data_meteoswiss_opendata/source/index
 

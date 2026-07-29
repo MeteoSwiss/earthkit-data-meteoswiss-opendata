@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>earthkit_data_meteoswiss_opendata.source &#8212; earthkit-data-meteoswiss-opendata</title>
+    <title>earthkit_data_meteoswiss_opendata.constants_source &#8212; earthkit-data-meteoswiss-opendata</title>
   
   
   
@@ -42,7 +42,7 @@
     <script src="../../_static/documentation_options.js?v=4be295c2"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/earthkit_data_meteoswiss_opendata/source';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/earthkit_data_meteoswiss_opendata/constants_source';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '_static/switcher_config.json';
@@ -350,7 +350,7 @@
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">earthkit_data_meteoswiss_opendata.source</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">earthkit_data_meteoswiss_opendata.constants_source</span></li>
   </ul>
 </nav>
 </div>
@@ -367,9 +367,9 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <h1>Source code for earthkit_data_meteoswiss_opendata.source</h1><div class="highlight"><pre>
+  <h1>Source code for earthkit_data_meteoswiss_opendata.constants_source</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Earthkit source for MeteoSwiss Open Data.</span>
+<span class="sd">Earthkit source for MeteoSwiss constant assets.</span>
 
 <span class="sd">Copyright (c) 2026 MeteoSwiss, contributors listed in AUTHORS</span>
 
@@ -378,46 +378,71 @@
 <span class="sd">SPDX-License-Identifier: BSD-3-Clause</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrEnum</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">earthkit.data.sources</span><span class="w"> </span><span class="kn">import</span> <span class="n">Source</span><span class="p">,</span> <span class="n">get_source</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_asset_urls</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.request</span><span class="w"> </span><span class="kn">import</span> <span class="n">Collection</span><span class="p">,</span> <span class="n">Request</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_collection_asset_url</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.request</span><span class="w"> </span><span class="kn">import</span> <span class="n">Collection</span>
 
 
-<div class="viewcode-block" id="MeteoSwissOpenDataSource">
-<a class="viewcode-back" href="../../autoapi/earthkit_data_meteoswiss_opendata/source/index.html#earthkit_data_meteoswiss_opendata.MeteoSwissOpenDataSource">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">MeteoSwissOpenDataSource</span><span class="p">(</span><span class="n">Source</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Earthkit source for MeteoSwiss Open Data.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ConstantAsset">
+<a class="viewcode-back" href="../../autoapi/earthkit_data_meteoswiss_opendata/constants_source/index.html#earthkit_data_meteoswiss_opendata.constants_source.ConstantAsset">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ConstantAsset</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Types of constant model data available from MeteoSwiss.&quot;&quot;&quot;</span>
+
+    <span class="n">HORIZONTAL</span> <span class="o">=</span> <span class="s2">&quot;horizontal&quot;</span>
+    <span class="n">VERTICAL</span> <span class="o">=</span> <span class="s2">&quot;vertical&quot;</span></div>
+
+
+
+<span class="c1"># Collection names and constant-asset filenames use different model suffixes.</span>
+<span class="n">_MODEL_SUFFIXES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Collection</span><span class="o">.</span><span class="n">ICON_CH1</span><span class="p">:</span> <span class="s2">&quot;icon-ch1-eps&quot;</span><span class="p">,</span>
+    <span class="n">Collection</span><span class="o">.</span><span class="n">ICON_CH2</span><span class="p">:</span> <span class="s2">&quot;icon-ch2-eps&quot;</span><span class="p">,</span>
+    <span class="n">Collection</span><span class="o">.</span><span class="n">KENDA_CH1</span><span class="p">:</span> <span class="s2">&quot;kenda-ch1&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="MeteoSwissConstantsSource">
+<a class="viewcode-back" href="../../autoapi/earthkit_data_meteoswiss_opendata/constants_source/index.html#earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MeteoSwissConstantsSource</span><span class="p">(</span><span class="n">Source</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve horizontal or vertical constants for a model collection.&quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">collection</span><span class="p">:</span> <span class="n">Collection</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">variable</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">perturbed</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
-        <span class="n">ref_time</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">,</span>
-        <span class="n">lead_time</span><span class="p">:</span> <span class="p">(</span><span class="nb">str</span> <span class="o">|</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">]),</span>
+        <span class="n">asset</span><span class="p">:</span> <span class="n">ConstantAsset</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
-        <span class="c1"># Pydantic validators accept and normalize the input types in request.py.</span>
-        <span class="c1"># Mypy only sees the final dataclass field types, thus the `ignore`.`</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span>
-            <span class="n">collection</span><span class="o">=</span><span class="n">collection</span><span class="p">,</span>  <span class="c1"># type: ignore[arg-type]</span>
-            <span class="n">variable</span><span class="o">=</span><span class="n">variable</span><span class="p">,</span>
-            <span class="n">perturbed</span><span class="o">=</span><span class="n">perturbed</span><span class="p">,</span>
-            <span class="n">reference_datetime</span><span class="o">=</span><span class="n">ref_time</span><span class="p">,</span>  <span class="c1"># type: ignore[arg-type]</span>
-            <span class="n">horizon</span><span class="o">=</span><span class="n">lead_time</span><span class="p">,</span>  <span class="c1"># type: ignore[arg-type]</span>
+        <span class="c1"># Validate and normalise public string arguments.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">collection</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">(</span><span class="n">collection</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">asset</span> <span class="o">=</span> <span class="n">ConstantAsset</span><span class="p">(</span><span class="n">asset</span><span class="p">)</span>
+
+<div class="viewcode-block" id="MeteoSwissConstantsSource.mutate">
+<a class="viewcode-back" href="../../autoapi/earthkit_data_meteoswiss_opendata/constants_source/index.html#earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource.mutate">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mutate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Source</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve the constant asset to an Earthkit URL source.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">model_suffix</span> <span class="o">=</span> <span class="n">_MODEL_SUFFIXES</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">collection</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Constants are not supported for collection </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">value</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
+
+        <span class="c1"># MeteoSwiss STAC collection IDs include this namespace.</span>
+        <span class="n">collection_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;ch.meteoschweiz.</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="c1"># Static assets follow the MeteoSwiss naming convention.</span>
+        <span class="n">asset_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">asset</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">_constants_</span><span class="si">{</span><span class="n">model_suffix</span><span class="si">}</span><span class="s2">.grib2&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="n">get_collection_asset_url</span><span class="p">(</span>
+            <span class="n">collection_id</span><span class="o">=</span><span class="n">collection_id</span><span class="p">,</span>
+            <span class="n">asset_id</span><span class="o">=</span><span class="n">asset_id</span><span class="p">,</span>
         <span class="p">)</span>
 
-<div class="viewcode-block" id="MeteoSwissOpenDataSource.mutate">
-<a class="viewcode-back" href="../../autoapi/earthkit_data_meteoswiss_opendata/source/index.html#earthkit_data_meteoswiss_opendata.MeteoSwissOpenDataSource.mutate">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">mutate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Source</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert the request into Earthkit&#39;s URL source.&quot;&quot;&quot;</span>
-        <span class="n">urls</span> <span class="o">=</span> <span class="n">get_asset_urls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">get_source</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="n">urls</span><span class="p">)</span></div>
+        <span class="c1"># Defer downloading and decoding to Earthkit.</span>
+        <span class="k">return</span> <span class="n">get_source</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span></div>
 </div>
 
 </pre></div>

@@ -1,0 +1,71 @@
+earthkit_data_meteoswiss_opendata.constants_source
+==================================================
+
+.. py:module:: earthkit_data_meteoswiss_opendata.constants_source
+
+.. autoapi-nested-parse::
+
+   Earthkit source for MeteoSwiss constant assets.
+
+   Copyright (c) 2026 MeteoSwiss, contributors listed in AUTHORS
+
+   Distributed under the terms of the BSD 3-Clause License.
+
+   SPDX-License-Identifier: BSD-3-Clause
+
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   earthkit_data_meteoswiss_opendata.constants_source.ConstantAsset
+   earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource
+
+
+Module Contents
+---------------
+
+.. py:class:: ConstantAsset
+
+   Bases: :py:obj:`enum.StrEnum`
+
+
+   Types of constant model data available from MeteoSwiss.
+
+
+   .. py:attribute:: HORIZONTAL
+      :value: 'horizontal'
+
+
+
+   .. py:attribute:: VERTICAL
+      :value: 'vertical'
+
+
+
+.. py:class:: MeteoSwissConstantsSource(*, collection: earthkit_data_meteoswiss_opendata.request.Collection | str, asset: ConstantAsset | str)
+
+   Bases: :py:obj:`earthkit.data.sources.Source`
+
+
+   Retrieve horizontal or vertical constants for a model collection.
+
+
+   .. py:attribute:: collection
+      :value: ''
+
+
+
+   .. py:attribute:: asset
+      :value: ''
+
+
+
+   .. py:method:: mutate() -> earthkit.data.sources.Source
+
+      Resolve the constant asset to an Earthkit URL source.
+
+
+

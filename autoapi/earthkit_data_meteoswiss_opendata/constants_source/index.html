@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>earthkit_data_meteoswiss_opendata.source &#8212; earthkit-data-meteoswiss-opendata</title>
+    <title>earthkit_data_meteoswiss_opendata.constants_source &#8212; earthkit-data-meteoswiss-opendata</title>
   
   
   
@@ -43,7 +43,7 @@
     <script src="../../../_static/documentation_options.js?v=4be295c2"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'autoapi/earthkit_data_meteoswiss_opendata/source/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'autoapi/earthkit_data_meteoswiss_opendata/constants_source/index';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '_static/switcher_config.json';
@@ -53,7 +53,8 @@
         </script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="prev" title="earthkit_data_meteoswiss_opendata.request" href="../request/index.html" />
+    <link rel="next" title="earthkit_data_meteoswiss_opendata.request" href="../request/index.html" />
+    <link rel="prev" title="earthkit_data_meteoswiss_opendata.api" href="../api/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="dev" />
@@ -324,9 +325,9 @@
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">earthkit_data_meteoswiss_opendata</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../api/index.html">earthkit_data_meteoswiss_opendata.api</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../constants_source/index.html">earthkit_data_meteoswiss_opendata.constants_source</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">earthkit_data_meteoswiss_opendata.constants_source</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../request/index.html">earthkit_data_meteoswiss_opendata.request</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">earthkit_data_meteoswiss_opendata.source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source/index.html">earthkit_data_meteoswiss_opendata.source</a></li>
 </ul>
 </details></li>
 </ul>
@@ -375,7 +376,7 @@
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">earthkit_data_meteoswiss_opendata</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">earthkit_data_meteoswiss_opendata.source</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">earthkit_data_meteoswiss_opendata.constants_source</span></li>
   </ul>
 </nav>
 </div>
@@ -392,9 +393,9 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="module-earthkit_data_meteoswiss_opendata.source">
-<span id="earthkit-data-meteoswiss-opendata-source"></span><h1>earthkit_data_meteoswiss_opendata.source<a class="headerlink" href="#module-earthkit_data_meteoswiss_opendata.source" title="Link to this heading">#</a></h1>
-<p>Earthkit source for MeteoSwiss Open Data.</p>
+  <section id="module-earthkit_data_meteoswiss_opendata.constants_source">
+<span id="earthkit-data-meteoswiss-opendata-constants-source"></span><h1>earthkit_data_meteoswiss_opendata.constants_source<a class="headerlink" href="#module-earthkit_data_meteoswiss_opendata.constants_source" title="Link to this heading">#</a></h1>
+<p>Earthkit source for MeteoSwiss constant assets.</p>
 <p>Copyright (c) 2026 MeteoSwiss, contributors listed in AUTHORS</p>
 <p>Distributed under the terms of the BSD 3-Clause License.</p>
 <p>SPDX-License-Identifier: BSD-3-Clause</p>
@@ -402,8 +403,11 @@
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#earthkit_data_meteoswiss_opendata.source.MeteoSwissOpenDataSource" title="earthkit_data_meteoswiss_opendata.source.MeteoSwissOpenDataSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeteoSwissOpenDataSource</span></code></a></p></td>
-<td><p>Earthkit source for MeteoSwiss Open Data.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#earthkit_data_meteoswiss_opendata.constants_source.ConstantAsset" title="earthkit_data_meteoswiss_opendata.constants_source.ConstantAsset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConstantAsset</span></code></a></p></td>
+<td><p>Types of constant model data available from MeteoSwiss.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource" title="earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeteoSwissConstantsSource</span></code></a></p></td>
+<td><p>Retrieve horizontal or vertical constants for a model collection.</p></td>
 </tr>
 </tbody>
 </table>
@@ -412,19 +416,41 @@
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="earthkit_data_meteoswiss_opendata.source.MeteoSwissOpenDataSource">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MeteoSwissOpenDataSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../request/index.html#earthkit_data_meteoswiss_opendata.request.Collection" title="earthkit_data_meteoswiss_opendata.request.Collection"><span class="pre">earthkit_data_meteoswiss_opendata.request.Collection</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perturbed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">datetime.datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lead_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">datetime.timedelta</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">datetime.timedelta</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/earthkit_data_meteoswiss_opendata/source.html#MeteoSwissOpenDataSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#earthkit_data_meteoswiss_opendata.source.MeteoSwissOpenDataSource" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">earthkit.data.sources.Source</span></code></p>
-<p>Earthkit source for MeteoSwiss Open Data.</p>
+<dt class="sig sig-object py" id="earthkit_data_meteoswiss_opendata.constants_source.ConstantAsset">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ConstantAsset</span></span><a class="reference internal" href="../../../_modules/earthkit_data_meteoswiss_opendata/constants_source.html#ConstantAsset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#earthkit_data_meteoswiss_opendata.constants_source.ConstantAsset" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.StrEnum</span></code></p>
+<p>Types of constant model data available from MeteoSwiss.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="earthkit_data_meteoswiss_opendata.source.MeteoSwissOpenDataSource.request">
-<span class="sig-name descname"><span class="pre">request</span></span><a class="headerlink" href="#earthkit_data_meteoswiss_opendata.source.MeteoSwissOpenDataSource.request" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="earthkit_data_meteoswiss_opendata.constants_source.ConstantAsset.HORIZONTAL">
+<span class="sig-name descname"><span class="pre">HORIZONTAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'horizontal'</span></em><a class="headerlink" href="#earthkit_data_meteoswiss_opendata.constants_source.ConstantAsset.HORIZONTAL" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="earthkit_data_meteoswiss_opendata.constants_source.ConstantAsset.VERTICAL">
+<span class="sig-name descname"><span class="pre">VERTICAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'vertical'</span></em><a class="headerlink" href="#earthkit_data_meteoswiss_opendata.constants_source.ConstantAsset.VERTICAL" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MeteoSwissConstantsSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../request/index.html#earthkit_data_meteoswiss_opendata.request.Collection" title="earthkit_data_meteoswiss_opendata.request.Collection"><span class="pre">earthkit_data_meteoswiss_opendata.request.Collection</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#earthkit_data_meteoswiss_opendata.constants_source.ConstantAsset" title="earthkit_data_meteoswiss_opendata.constants_source.ConstantAsset"><span class="pre">ConstantAsset</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/earthkit_data_meteoswiss_opendata/constants_source.html#MeteoSwissConstantsSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">earthkit.data.sources.Source</span></code></p>
+<p>Retrieve horizontal or vertical constants for a model collection.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource.collection">
+<span class="sig-name descname"><span class="pre">collection</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource.collection" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource.asset">
+<span class="sig-name descname"><span class="pre">asset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource.asset" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="earthkit_data_meteoswiss_opendata.source.MeteoSwissOpenDataSource.mutate">
-<span class="sig-name descname"><span class="pre">mutate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">earthkit.data.sources.Source</span></span></span><a class="reference internal" href="../../../_modules/earthkit_data_meteoswiss_opendata/source.html#MeteoSwissOpenDataSource.mutate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#earthkit_data_meteoswiss_opendata.source.MeteoSwissOpenDataSource.mutate" title="Link to this definition">#</a></dt>
-<dd><p>Convert the request into Earthkit’s URL source.</p>
+<dt class="sig sig-object py" id="earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource.mutate">
+<span class="sig-name descname"><span class="pre">mutate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">earthkit.data.sources.Source</span></span></span><a class="reference internal" href="../../../_modules/earthkit_data_meteoswiss_opendata/constants_source.html#MeteoSwissConstantsSource.mutate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource.mutate" title="Link to this definition">#</a></dt>
+<dd><p>Resolve the constant asset to an Earthkit URL source.</p>
 </dd></dl>
 
 </dd></dl>
@@ -443,13 +469,22 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../request/index.html"
+       href="../api/index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">earthkit_data_meteoswiss_opendata.api</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../request/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">earthkit_data_meteoswiss_opendata.request</p>
       </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -472,9 +507,15 @@
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#earthkit_data_meteoswiss_opendata.source.MeteoSwissOpenDataSource"><code class="docutils literal notranslate"><span class="pre">MeteoSwissOpenDataSource</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#earthkit_data_meteoswiss_opendata.source.MeteoSwissOpenDataSource.request"><code class="docutils literal notranslate"><span class="pre">MeteoSwissOpenDataSource.request</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#earthkit_data_meteoswiss_opendata.source.MeteoSwissOpenDataSource.mutate"><code class="docutils literal notranslate"><span class="pre">MeteoSwissOpenDataSource.mutate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#earthkit_data_meteoswiss_opendata.constants_source.ConstantAsset"><code class="docutils literal notranslate"><span class="pre">ConstantAsset</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#earthkit_data_meteoswiss_opendata.constants_source.ConstantAsset.HORIZONTAL"><code class="docutils literal notranslate"><span class="pre">ConstantAsset.HORIZONTAL</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#earthkit_data_meteoswiss_opendata.constants_source.ConstantAsset.VERTICAL"><code class="docutils literal notranslate"><span class="pre">ConstantAsset.VERTICAL</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource"><code class="docutils literal notranslate"><span class="pre">MeteoSwissConstantsSource</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource.collection"><code class="docutils literal notranslate"><span class="pre">MeteoSwissConstantsSource.collection</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource.asset"><code class="docutils literal notranslate"><span class="pre">MeteoSwissConstantsSource.asset</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#earthkit_data_meteoswiss_opendata.constants_source.MeteoSwissConstantsSource.mutate"><code class="docutils literal notranslate"><span class="pre">MeteoSwissConstantsSource.mutate()</span></code></a></li>
 </ul>
 </li>
 </ul>

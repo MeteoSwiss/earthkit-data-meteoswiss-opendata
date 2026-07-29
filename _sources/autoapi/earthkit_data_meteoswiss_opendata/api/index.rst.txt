@@ -31,6 +31,7 @@ Functions
 .. autoapisummary::
 
    earthkit_data_meteoswiss_opendata.api.get_asset_urls
+   earthkit_data_meteoswiss_opendata.api.get_collection_asset_url
 
 
 Module Contents
@@ -52,5 +53,23 @@ Module Contents
 
    For requests with several lead times, only complete
    forecast runs are returned.
+
+
+.. py:function:: get_collection_asset_url(collection_id: str, asset_id: str) -> str
+
+   Return the URL of a collection-level static asset.
+
+   :Parameters: * **collection_id** -- Fully qualified STAC collection ID.
+                * **asset_id** -- Identifier of the collection asset.
+
+   :returns: URL of the requested collection asset.
+
+   :raises requests.HTTPError: If the collection-assets request fails.
+   :raises KeyError: If the requested asset is not present.
+
+   .. seealso::
+
+      `STAC collection-assets API
+      <https://data.geo.admin.ch/api/stac/static/spec/v1/api.html#tag/Data/operation/getCollectionAssets>`_
 
 
