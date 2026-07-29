@@ -1,0 +1,705 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Getting Started &#8212; earthkit-data-meteoswiss-opendata</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=8e5abdd0" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=1e764743"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'readme';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '../_static/switcher_config.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.2.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Changelog" href="changelog.html" />
+    <link rel="prev" title="earthkit-data-meteoswiss-opendata Documentation" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+    <meta name="docbuild:last-update" content="29.07.2026"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/app-icon_meteoswiss_rounded_rgb.png" class="logo__image only-light" alt=""/>
+    <img src="_static/app-icon_meteoswiss_rounded_rgb.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">earthkit-data-meteoswiss-opendata</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="autoapi/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="autoapi/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Getting Started</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <a class="reference external image-reference" href="https://pypi.org/project/earthkit-data-meteoswiss-opendata/"><img alt="https://img.shields.io/pypi/v/earthkit-data-meteoswiss-opendata.svg" src="https://img.shields.io/pypi/v/earthkit-data-meteoswiss-opendata.svg" />
+</a>
+<a class="reference external image-reference" href="https://pypi.org/project/earthkit-data-meteoswiss-opendata/"><img alt="https://img.shields.io/pypi/pyversions/earthkit-data-meteoswiss-opendata.svg" src="https://img.shields.io/pypi/pyversions/earthkit-data-meteoswiss-opendata.svg" />
+</a>
+<a class="reference external image-reference" href="https://pypi.org/project/earthkit-data-meteoswiss-opendata/"><img alt="https://img.shields.io/pypi/l/earthkit-data-meteoswiss-opendata.svg" src="https://img.shields.io/pypi/l/earthkit-data-meteoswiss-opendata.svg" />
+</a>
+<a class="reference external image-reference" href="https://github.com/MeteoSwiss/earthkit-data-meteoswiss-opendata/actions/workflows/CI_test.yaml"><img alt="https://github.com/MeteoSwiss/earthkit-data-meteoswiss-opendata/actions/workflows/CI_test.yaml/badge.svg" src="https://github.com/MeteoSwiss/earthkit-data-meteoswiss-opendata/actions/workflows/CI_test.yaml/badge.svg" />
+</a>
+<a class="reference external image-reference" href="https://github.com/MeteoSwiss/earthkit-data-meteoswiss-opendata/actions/workflows/CI_publish_dev_documentation.yaml"><img alt="https://github.com/MeteoSwiss/earthkit-data-meteoswiss-opendata/actions/workflows/CI_publish_dev_documentation.yaml/badge.svg" src="https://github.com/MeteoSwiss/earthkit-data-meteoswiss-opendata/actions/workflows/CI_publish_dev_documentation.yaml/badge.svg" />
+</a>
+<section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">earthkit-data-meteoswiss-opendata</span></code> provides earthkit-data source plugins for accessing MeteoSwiss numerical weather prediction data through the MeteoSwiss Open Data STAC API.</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>Install the released package with pip:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>earthkit-data-meteoswiss-opendata
+</pre></div>
+</div>
+<p>With Poetry:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry<span class="w"> </span>add<span class="w"> </span>earthkit-data-meteoswiss-opendata
+</pre></div>
+</div>
+<p>Installing the package also installs <code class="docutils literal notranslate"><span class="pre">earthkit-data</span></code> and automatically
+registers the <code class="docutils literal notranslate"><span class="pre">meteoswiss-opendata</span></code> and
+<code class="docutils literal notranslate"><span class="pre">meteoswiss-opendata-constants</span></code> source plugins. No additional plugin
+configuration is required.</p>
+</section>
+<section id="using-the-library">
+<h2>Using the Library<a class="headerlink" href="#using-the-library" title="Link to this heading">#</a></h2>
+<p>Load the latest deterministic ICON-CH2-EPS forecast +0h, +1h &amp; +2h for total
+precipitation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">earthkit.data</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ekd</span>
+
+<span class="n">forecast</span> <span class="o">=</span> <span class="n">ekd</span><span class="o">.</span><span class="n">from_source</span><span class="p">(</span>
+    <span class="s2">&quot;meteoswiss-opendata&quot;</span><span class="p">,</span>
+    <span class="n">collection</span><span class="o">=</span><span class="s2">&quot;ogd-forecasting-icon-ch2&quot;</span><span class="p">,</span>
+    <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;TOT_PREC&quot;</span><span class="p">,</span>
+    <span class="n">perturbed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">ref_time</span><span class="o">=</span><span class="s2">&quot;latest&quot;</span><span class="p">,</span>
+    <span class="n">lead_time</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">(</span><span class="n">time_dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;forecast_reference_time&quot;</span><span class="p">,</span> <span class="s2">&quot;step&quot;</span><span class="p">],</span> <span class="n">squeeze</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For <code class="docutils literal notranslate"><span class="pre">ref_time=&quot;latest&quot;</span></code>, the plugin selects the newest forecast run that
+contains all requested lead times.
+An exact reference time can be provided as a timezone-aware
+<code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">forecast</span> <span class="o">=</span> <span class="n">ekd</span><span class="o">.</span><span class="n">from_source</span><span class="p">(</span>
+    <span class="s2">&quot;meteoswiss-opendata&quot;</span><span class="p">,</span>
+    <span class="n">collection</span><span class="o">=</span><span class="s2">&quot;ogd-forecasting-icon-ch2&quot;</span><span class="p">,</span>
+    <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;TOT_PREC&quot;</span><span class="p">,</span>
+    <span class="n">perturbed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">ref_time</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span>
+        <span class="mi">2026</span><span class="p">,</span>
+        <span class="mi">7</span><span class="p">,</span>
+        <span class="mi">20</span><span class="p">,</span>
+        <span class="mi">6</span><span class="p">,</span>
+        <span class="n">tzinfo</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">lead_time</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>ISO 8601 strings such as <code class="docutils literal notranslate"><span class="pre">&quot;2026-07-20T06:00:00Z&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;PT1H&quot;</span></code> are also
+accepted.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">collection</span></code></dt><dd><p>MeteoSwiss Open Data collection, for example
+<code class="docutils literal notranslate"><span class="pre">ogd-forecasting-icon-ch2</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">variable</span></code></dt><dd><p>Forecast variable name, for example <code class="docutils literal notranslate"><span class="pre">TOT_PREC</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">perturbed</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">False</span></code> for deterministic data or <code class="docutils literal notranslate"><span class="pre">True</span></code> for perturbed data.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ref_time</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;latest&quot;</span></code>, a timezone-aware <code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code>, an ISO 8601
+datetime string, or an ISO 8601 datetime interval.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">lead_time</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">datetime.timedelta</span></code>, an ISO 8601 duration string, or a list of
+either. Examples include <code class="docutils literal notranslate"><span class="pre">datetime.timedelta(hours=1)</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;PT1H&quot;</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">[&quot;PT0H&quot;,</span> <span class="pre">&quot;PT1H&quot;,</span> <span class="pre">&quot;PT2H&quot;]</span></code>.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="model-constants">
+<h2>Model Constants<a class="headerlink" href="#model-constants" title="Link to this heading">#</a></h2>
+<p>Load the horizontal or vertical constants associated with a model collection:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">horizontal</span> <span class="o">=</span> <span class="n">ekd</span><span class="o">.</span><span class="n">from_source</span><span class="p">(</span>
+    <span class="s2">&quot;meteoswiss-opendata-constants&quot;</span><span class="p">,</span>
+    <span class="n">collection</span><span class="o">=</span><span class="s2">&quot;ogd-forecasting-icon-ch2&quot;</span><span class="p">,</span>
+    <span class="n">asset</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">vertical</span> <span class="o">=</span> <span class="n">ekd</span><span class="o">.</span><span class="n">from_source</span><span class="p">(</span>
+    <span class="s2">&quot;meteoswiss-opendata-constants&quot;</span><span class="p">,</span>
+    <span class="n">collection</span><span class="o">=</span><span class="s2">&quot;ogd-forecasting-icon-ch2&quot;</span><span class="p">,</span>
+    <span class="n">asset</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">asset</span></code> parameter accepts <code class="docutils literal notranslate"><span class="pre">&quot;horizontal&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;vertical&quot;</span></code>. The
+returned data can be handled with the standard earthkit methods e.g. <a class="reference external" href="https://earthkit-data.readthedocs.io/en/latest/autoapi/earthkit/data/indexing/xarray/index.html#earthkit.data.indexing.xarray.XarrayMixIn.to_xarray">to_xarray()</a> or <a class="reference external" href="https://earthkit-data.readthedocs.io/en/latest/concepts/targets/to_target.html#to_target">to_target()</a>, for example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">horizontal</span><span class="o">.</span><span class="n">to_target</span><span class="p">(</span>
+    <span class="s2">&quot;file&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;horizontal_constants_icon-ch2-eps.grib2&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="related-links">
+<h2>Related Links<a class="headerlink" href="#related-links" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://earthkit-data.readthedocs.io/en/latest/">earthkit-data documentation</a></p></li>
+<li><p><a class="reference external" href="https://earthkit-data.readthedocs.io/en/latest/concepts/plugins/sources_plugin.html">earthkit source plugin documentation</a></p></li>
+<li><p><a class="reference external" href="https://opendatadocs.meteoswiss.ch/">MeteoSwiss Open Data documentation</a></p></li>
+<li><p><a class="reference external" href="https://opendatadocs.meteoswiss.ch/e-forecast-data">MeteoSwiss numerical weather prediction data</a></p></li>
+<li><p><a class="reference external" href="https://github.com/MeteoSwiss/opendata-nwp-demos/blob/main/09_constant_parameters.ipynb">MeteoSwiss constant parameters example</a></p></li>
+<li><p><a class="reference external" href="https://github.com/MeteoSwiss/opendata-nwp-demos">MeteoSwiss Open Data NWP example notebooks</a></p></li>
+</ul>
+<section id="collection-browser">
+<h3>Collection Browser<a class="headerlink" href="#collection-browser" title="Link to this heading">#</a></h3>
+<p>The available collection assets can be inspected in the STAC Browser:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://data.geo.admin.ch/browser/index.html#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1">ICON-CH1-EPS collection</a></p></li>
+<li><p><a class="reference external" href="https://data.geo.admin.ch/browser/index.html#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2">ICON-CH2-EPS collection</a></p></li>
+<li><p><a class="reference external" href="https://data.geo.admin.ch/browser/index.html#/collections/ch.meteoschweiz.ogd-analysis-kenda-ch1">KENDA-CH1 collection</a></p></li>
+</ul>
+</section>
+</section>
+<section id="development-setup-with-poetry">
+<h2>Development Setup with Poetry<a class="headerlink" href="#development-setup-with-poetry" title="Link to this heading">#</a></h2>
+<section id="building-the-project">
+<h3>Building the Project<a class="headerlink" href="#building-the-project" title="Link to this heading">#</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>earthkit-data-meteoswiss-opendata
+<span class="gp">$ </span>poetry<span class="w"> </span>install
+</pre></div>
+</div>
+</section>
+<section id="run-tests">
+<h3>Run Tests<a class="headerlink" href="#run-tests" title="Link to this heading">#</a></h3>
+<p>Run the offline unit tests:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>pytest
+</pre></div>
+</div>
+<p>Run the optional live integration test:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nv">RUN_INTEGRATION</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-m<span class="w"> </span>integration
+</pre></div>
+</div>
+</section>
+<section id="run-quality-tools">
+<h3>Run Quality Tools<a class="headerlink" href="#run-quality-tools" title="Link to this heading">#</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>pylint<span class="w"> </span>earthkit_data_meteoswiss_opendata
+<span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>mypy<span class="w"> </span>earthkit_data_meteoswiss_opendata
+<span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>--check
+<span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check
+</pre></div>
+</div>
+</section>
+<section id="generate-documentation">
+<h3>Generate Documentation<a class="headerlink" href="#generate-documentation" title="Link to this heading">#</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry<span class="w"> </span>run<span class="w"> </span>sphinx-build<span class="w"> </span>doc<span class="w"> </span>doc/_build
+</pre></div>
+</div>
+<p>Then open <code class="docutils literal notranslate"><span class="pre">doc/_build/index.html</span></code>.</p>
+</section>
+<section id="build-wheels">
+<h3>Build Wheels<a class="headerlink" href="#build-wheels" title="Link to this heading">#</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry<span class="w"> </span>build
+</pre></div>
+</div>
+</section>
+</section>
+<section id="release-the-project">
+<h2>Release the Project<a class="headerlink" href="#release-the-project" title="Link to this heading">#</a></h2>
+<p>The project follows the <strong>GitOps concept</strong>: releases are triggered whenever a
+Git tag is created.</p>
+<p>The tag must follow <a class="reference external" href="https://semver.org/">Semantic Versioning</a> and
+<a class="reference external" href="https://peps.python.org/pep-0440/">PEP 440</a>. Otherwise, the release task
+will fail.</p>
+<p>Follow these steps to create a release:</p>
+<ul class="simple">
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> with the release information.</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">doc/_static/switcher_config.json</span></code> with the new documentation URL.</p></li>
+<li><p>Create a new release and matching tag in the GitHub project.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">earthkit-data-meteoswiss-opendata Documentation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="changelog.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Changelog</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-library">Using the Library</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-constants">Model Constants</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-links">Related Links</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collection-browser">Collection Browser</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-setup-with-poetry">Development Setup with Poetry</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-project">Building the Project</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-tests">Run Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-quality-tools">Run Quality Tools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-documentation">Generate Documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-wheels">Build Wheels</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#release-the-project">Release the Project</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item"><!-- This will display the version of the docs -->
+earthkit-data-meteoswiss-opendata, version: 0.2.0-3909eaa</div>
+      
+        <div class="footer-item"><p class="last-updated">
+  Last updated on 29.07.2026.
+  <br/>
+</p></div>
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, MeteoSwiss.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

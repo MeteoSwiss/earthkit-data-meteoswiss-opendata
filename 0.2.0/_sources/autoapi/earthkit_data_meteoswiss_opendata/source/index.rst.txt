@@ -1,0 +1,45 @@
+earthkit_data_meteoswiss_opendata.source
+========================================
+
+.. py:module:: earthkit_data_meteoswiss_opendata.source
+
+.. autoapi-nested-parse::
+
+   Earthkit source for MeteoSwiss Open Data.
+
+   Copyright (c) 2026 MeteoSwiss, contributors listed in AUTHORS
+
+   Distributed under the terms of the BSD 3-Clause License.
+
+   SPDX-License-Identifier: BSD-3-Clause
+
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   earthkit_data_meteoswiss_opendata.source.MeteoSwissOpenDataSource
+
+
+Module Contents
+---------------
+
+.. py:class:: MeteoSwissOpenDataSource(*, collection: earthkit_data_meteoswiss_opendata.request.Collection | str, variable: str, perturbed: bool, ref_time: str | datetime.datetime, lead_time: str | datetime.timedelta | list[str | datetime.timedelta])
+
+   Bases: :py:obj:`earthkit.data.sources.Source`
+
+
+   Earthkit source for MeteoSwiss Open Data.
+
+
+   .. py:attribute:: request
+
+
+   .. py:method:: mutate() -> earthkit.data.sources.Source
+
+      Convert the request into Earthkit's URL source.
+
+
+
