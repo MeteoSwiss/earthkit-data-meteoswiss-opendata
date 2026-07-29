@@ -1,6 +1,10 @@
 .. image:: https://img.shields.io/pypi/v/earthkit-data-meteoswiss-opendata.svg
     :target: https://pypi.org/project/earthkit-data-meteoswiss-opendata/
 
+.. image:: https://img.shields.io/badge/documentation-latest-blue.svg
+    :target: https://meteoswiss.github.io/earthkit-data-meteoswiss-opendata/
+    :alt: Documentation
+
 .. image:: https://img.shields.io/pypi/pyversions/earthkit-data-meteoswiss-opendata.svg
     :target: https://pypi.org/project/earthkit-data-meteoswiss-opendata/
 
@@ -147,6 +151,7 @@ returned data can be handled with the standard earthkit methods e.g. `to_xarray(
 Related Links
 -------------
 
+* `Plugin documentation <https://meteoswiss.github.io/earthkit-data-meteoswiss-opendata/>`__
 * `earthkit-data documentation <https://earthkit-data.readthedocs.io/en/latest/>`__
 * `earthkit source plugin documentation <https://earthkit-data.readthedocs.io/en/latest/concepts/plugins/sources_plugin.html>`__
 * `MeteoSwiss Open Data documentation <https://opendatadocs.meteoswiss.ch/>`__
