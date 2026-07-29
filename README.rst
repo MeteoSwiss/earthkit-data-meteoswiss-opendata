@@ -17,9 +17,7 @@
 Getting Started
 ===============
 
-``earthkit-data-meteoswiss-opendata`` is an ``earthkit-data`` source plugin
-for accessing MeteoSwiss numerical weather prediction data through the
-MeteoSwiss Open Data STAC API.
+``earthkit-data-meteoswiss-opendata`` provides earthkit-data source plugins for accessing MeteoSwiss numerical weather prediction data through the MeteoSwiss Open Data STAC API.
 
 Installation
 ------------
@@ -36,7 +34,10 @@ With Poetry:
 
     $ poetry add earthkit-data-meteoswiss-opendata
 
-Installing the package also installs ``earthkit-data`` and automatically registers the ``meteoswiss-opendata`` source plugin. No additional plugin configuration is required.
+Installing the package also installs ``earthkit-data`` and automatically
+registers the ``meteoswiss-opendata`` and
+``meteoswiss-opendata-constants`` source plugins. No additional plugin
+configuration is required.
 
 Using the Library
 -----------------
@@ -63,7 +64,7 @@ precipitation:
         ],
     )
 
-    dataset = forecast.to_xarray(profile="grib")
+    dataset = forecast.to_xarray(time_dims=["forecast_reference_time", "step"], squeeze=False)
     print(dataset)
 
 
@@ -114,13 +115,43 @@ Parameters
     either. Examples include ``datetime.timedelta(hours=1)``, ``"PT1H"``,
     and ``["PT0H", "PT1H", "PT2H"]``.
 
+Model Constants
+---------------
+
+Load the horizontal or vertical constants associated with a model collection:
+
+.. code-block:: python
+
+    horizontal = ekd.from_source(
+        "meteoswiss-opendata-constants",
+        collection="ogd-forecasting-icon-ch2",
+        asset="horizontal",
+    )
+
+    vertical = ekd.from_source(
+        "meteoswiss-opendata-constants",
+        collection="ogd-forecasting-icon-ch2",
+        asset="vertical",
+    )
+
+The ``asset`` parameter accepts ``"horizontal"`` or ``"vertical"``. The
+returned data can be handled with the standard earthkit methods e.g. `to_xarray() <https://earthkit-data.readthedocs.io/en/latest/autoapi/earthkit/data/indexing/xarray/index.html#earthkit.data.indexing.xarray.XarrayMixIn.to_xarray>`__ or `to_target() <https://earthkit-data.readthedocs.io/en/latest/concepts/targets/to_target.html#to_target>`__, for example:
+
+.. code-block:: python
+
+    horizontal.to_target(
+        "file",
+        "horizontal_constants_icon-ch2-eps.grib2",
+    )
+
 Related Links
 -------------
 
 * `earthkit-data documentation <https://earthkit-data.readthedocs.io/en/latest/>`__
-* `Earthkit source plugin documentation <https://earthkit-data.readthedocs.io/en/latest/concepts/plugins/sources_plugin.html>`__
+* `earthkit source plugin documentation <https://earthkit-data.readthedocs.io/en/latest/concepts/plugins/sources_plugin.html>`__
 * `MeteoSwiss Open Data documentation <https://opendatadocs.meteoswiss.ch/>`__
 * `MeteoSwiss numerical weather prediction data <https://opendatadocs.meteoswiss.ch/e-forecast-data>`__
+* `MeteoSwiss constant parameters example <https://github.com/MeteoSwiss/opendata-nwp-demos/blob/main/09_constant_parameters.ipynb>`__
 * `MeteoSwiss Open Data NWP example notebooks <https://github.com/MeteoSwiss/opendata-nwp-demos>`__
 
 Collection Browser

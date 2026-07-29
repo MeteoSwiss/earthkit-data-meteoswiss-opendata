@@ -2,6 +2,18 @@
 Changelog
 =========
 
+Version 0.2.0
+-------------
+
+Features
+''''''''
+
+- Add the ``meteoswiss-opendata-constants`` Earthkit source.
+- Support horizontal and vertical model constant assets.
+- Support ICON-CH1-EPS, ICON-CH2-EPS and KENDA-CH1 constant assets.
+- Add usage examples and links to the constants documentation and notebook.
+- Add unit tests for constant-asset resolution and plugin discovery.
+
 Version 0.1.0
 -------------
 

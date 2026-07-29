@@ -48,6 +48,10 @@ def _search(
     Raises:
         requests.HTTPError: If the STAC request fails.
         RuntimeError: If an unsupported pagination link is returned.
+
+    See Also:
+        `STAC item search API
+        <https://data.geo.admin.ch/api/stac/static/spec/v1/api.html#tag/STAC/operation/postSearchSTAC>`_
     """
     response = session.post(
         url,
@@ -172,3 +176,38 @@ def get_asset_urls(request: Request) -> list[str]:
     # For an explicit time range, return every complete run,
     # ordered first by requested lead time and then by run time.
     return [asset_map[(ref_time, lead_time)] for lead_time in request.lead_times for ref_time in complete_runs]
+
+
+def get_collection_asset_url(
+    collection_id: str,
+    asset_id: str,
+) -> str:
+    """Return the URL of a collection-level static asset.
+
+    Args:
+        collection_id: Fully qualified STAC collection ID.
+        asset_id: Identifier of the collection asset.
+
+    Returns:
+        URL of the requested collection asset.
+
+    Raises:
+        requests.HTTPError: If the collection-assets request fails.
+        KeyError: If the requested asset is not present.
+
+    See Also:
+        `STAC collection-assets API
+        <https://data.geo.admin.ch/api/stac/static/spec/v1/api.html#tag/Data/operation/getCollectionAssets>`_
+    """
+    response = session.get(
+        f"{API_URL}/collections/{collection_id}/assets",
+        timeout=TIMEOUT,
+    )
+    response.raise_for_status()
+
+    # Collection assets are returned as a list of metadata objects.
+    for asset in response.json().get("assets", []):
+        if asset.get("id") == asset_id:
+            return str(asset["href"])
+
+    raise KeyError(f"Asset {asset_id!r} was not found in collection {collection_id!r}")

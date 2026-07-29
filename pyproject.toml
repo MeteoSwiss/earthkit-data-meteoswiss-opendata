@@ -19,6 +19,7 @@ dependencies = [
 # earthkit.data.from_source("meteoswiss-opendata", ...)
 [project.entry-points."earthkit.data.sources"]
 meteoswiss-opendata = "earthkit_data_meteoswiss_opendata.source:MeteoSwissOpenDataSource"
+meteoswiss-opendata-constants = "earthkit_data_meteoswiss_opendata.constants_source:MeteoSwissConstantsSource"
 
 [dependency-groups]
 test = [
